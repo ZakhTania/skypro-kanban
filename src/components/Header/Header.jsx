@@ -1,7 +1,14 @@
 import "./Header.css";
 import PopUserSet from "../PopUserSet/PopUserSet";
+import { useState } from "react";
 
 function Header() {
+  const [isDisplayed, setIsDisplayed] = useState(false);
+
+  const handleClick = () => {
+    setIsDisplayed((prevState) => !prevState);
+  };
+
   return (
     <header className="header">
       <div className="container">
@@ -20,10 +27,15 @@ function Header() {
             <button className="header__btn-main-new _hover01" id="btnMainNew">
               <a href="#popNewCard">Создать новую задачу</a>
             </button>
-            <a href="#user-set-target" className="header__user _hover02">
+            <a
+              // href="#user-set-target"
+              href="#"
+              className="header__user _hover02"
+              onClick={handleClick}
+            >
               Ivan Ivanov
             </a>
-            <PopUserSet />
+            <PopUserSet isDisplayed={isDisplayed} />
           </nav>
         </div>
       </div>
