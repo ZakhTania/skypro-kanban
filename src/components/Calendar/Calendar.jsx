@@ -1,6 +1,6 @@
 import "./Calendar.css";
 
-function Calendar({children}) {
+function Calendar({ children }) {
   return (
     <div className="pop-new-card__calendar calendar">
       <p className="calendar__ttl subttl">Даты</p>
