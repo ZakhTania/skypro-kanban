@@ -2,7 +2,7 @@ import "./Header.css";
 import PopUserSet from "../PopUserSet/PopUserSet";
 import { useState } from "react";
 
-function Header() {
+function Header({ addCard }) {
   const [isDisplayed, setIsDisplayed] = useState(false);
 
   const handleClick = () => {
@@ -24,8 +24,13 @@ function Header() {
             </a>
           </div>
           <nav className="header__nav">
-            <button className="header__btn-main-new _hover01" id="btnMainNew">
-              <a href="#popNewCard">Создать новую задачу</a>
+            <button
+              className="header__btn-main-new _hover01"
+              id="btnMainNew"
+              onClick={addCard}
+            >
+              {/* <a href="#popNewCard">Создать новую задачу</a> */}
+              <a href="#">Создать новую задачу</a>
             </button>
             <a
               // href="#user-set-target"

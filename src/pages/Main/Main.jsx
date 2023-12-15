@@ -1,8 +1,7 @@
 import "./Main.css";
 import Column from "../../components/Column/Column";
-import { cardList } from "../../data";
 
-function Main() {
+function Main({ cards }) {
   const statusList = [
     "Без статуса",
     "Нужно сделать",
@@ -19,7 +18,7 @@ function Main() {
               <Column
                 key={status}
                 title={status}
-                cardList={cardList.filter((card) => card.status === status)}
+                cardList={cards.filter((card) => card.status === status)}
               />
             ))}
           </div>
