@@ -1,17 +1,27 @@
 import "./Main.css";
 import Column from "../../components/Column/Column";
+import { cardList } from "../../data";
 
 function Main() {
+  const statusList = [
+    "Без статуса",
+    "Нужно сделать",
+    "В работе",
+    "Тестирование",
+    "Готово",
+  ];
   return (
     <main className="main">
       <div className="container">
         <div className="main__block">
           <div className="main__content">
-            <Column title={"Без статуса"} />
-            <Column title={"Нужно сделать"} />
-            <Column title={"В работе"} />
-            <Column title={"Тестирование"} />
-            <Column title={"Готово"} />
+            {statusList.map((status) => (
+              <Column
+                key={status}
+                title={status}
+                cardList={cardList.filter((card) => card.status === status)}
+              />
+            ))}
           </div>
         </div>
       </div>
