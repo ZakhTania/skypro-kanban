@@ -5,10 +5,11 @@ import NewCard from "./components/NewCard/NewCard";
 import PopExit from "./components/PopExit/Exit";
 import PopBrowse from "./components/PopBrowse/PopBrowse";
 import { cardList } from "./data";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
   const [cards, setCards] = useState(cardList);
+  const [isLoading, setIsLoading] = useState(true);
 
   function addCard() {
     const newCard = {
@@ -20,6 +21,11 @@ function App() {
     };
     setCards([...cardList, newCard]);
   }
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+  }, []);
   return (
     <>
       <div className="wrapper">
@@ -32,8 +38,11 @@ function App() {
         {/* <!-- pop-up end--> */}
 
         <Header addCard={addCard} />
-
-        <Main cards={cards} />
+        {isLoading ? (
+          <div className="loading">Данные загружаются...</div>
+        ) : (
+          <Main cards={cards} />
+        )}
       </div>
     </>
   );
