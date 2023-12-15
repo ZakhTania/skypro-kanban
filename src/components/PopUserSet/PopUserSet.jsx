@@ -1,15 +1,8 @@
 import "./PopUserSet.css";
 
-function PopUserSet({ isDisplayed }) {
-  const styleDisplayBlock = { display: "block" };
-  const styleDisplayNone = { display: "none" };
-
+function PopUserSet() {
   return (
-    <div
-      className="header__pop-user-set pop-user-set"
-      id="user-set-target"
-      style={isDisplayed ? styleDisplayBlock : styleDisplayNone}
-    >
+    <div className="header__pop-user-set pop-user-set" id="user-set-target">
       {/* <!-- <a href="">x</a> --> */}
       <p className="pop-user-set__name">Ivan Ivanov</p>
       <p className="pop-user-set__mail">ivan.ivanov@gmail.com</p>

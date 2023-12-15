@@ -3,10 +3,10 @@ import PopUserSet from "../PopUserSet/PopUserSet";
 import { useState } from "react";
 
 function Header({ addCard }) {
-  const [isDisplayed, setIsDisplayed] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
-  const handleClick = () => {
-    setIsDisplayed((prevState) => !prevState);
+  const toggleDropdown = () => {
+    setIsOpen((prevState) => !prevState);
   };
 
   return (
@@ -30,17 +30,12 @@ function Header({ addCard }) {
               onClick={addCard}
             >
               {/* <a href="#popNewCard">Создать новую задачу</a> */}
-              <a href="#">Создать новую задачу</a>
+              Создать новую задачу
             </button>
-            <a
-              // href="#user-set-target"
-              href="#"
-              className="header__user _hover02"
-              onClick={handleClick}
-            >
+            <a className="header__user _hover02" onClick={toggleDropdown}>
               Ivan Ivanov
             </a>
-            <PopUserSet isDisplayed={isDisplayed} />
+            {isOpen && <PopUserSet />}
           </nav>
         </div>
       </div>

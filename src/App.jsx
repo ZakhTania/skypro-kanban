@@ -13,19 +13,21 @@ function App() {
 
   function addCard() {
     const newCard = {
-      id: cardList.length + 1,
+      id: cards.length + 1,
       theme: "Research",
       title: "Название задачи",
       date: "30.10.23",
       status: "Без статуса",
     };
-    setCards([...cardList, newCard]);
+    setCards([...cards, newCard]);
   }
+
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
     }, 2000);
   }, []);
+
   return (
     <>
       <div className="wrapper">
@@ -38,6 +40,7 @@ function App() {
         {/* <!-- pop-up end--> */}
 
         <Header addCard={addCard} />
+        
         {isLoading ? (
           <div className="loading">Данные загружаются...</div>
         ) : (
