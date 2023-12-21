@@ -1,10 +1,19 @@
-export default function Card({ color, category, name, date }) {
+export default function Card({ theme, title, date }) {
+  let color;
+  switch(theme) {
+case "Web Design": color = '_orange';
+break;
+case "Copywriting": color = '_purple';
+break;
+case "Research": color = '_green';
+break;
+  }
   return (
     <div className="cards__item">
       <div className="cards__card card">
         <div className="card__group">
           <div className={"card__theme " + color}>
-            <p className={color}>{category}</p>
+          <p className={color}>{theme}</p>
           </div>
           <a href="#popBrowse" target="_self">
             <div className="card__btn">
@@ -16,7 +25,7 @@ export default function Card({ color, category, name, date }) {
         </div>
         <div className="card__content">
           <a href="" target="_blank">
-            <h3 className="card__title">{name}</h3>
+            <h3 className="card__title">{title}</h3>
           </a>
           <div className="card__date">
             <svg

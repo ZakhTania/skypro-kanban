@@ -1,7 +1,14 @@
 import "./Header.css";
 import PopUserSet from "../PopUserSet/PopUserSet";
+import { useState } from "react";
 
-function Header() {
+function Header({ addCard }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setIsOpen((prevState) => !prevState);
+  };
+
   return (
     <header className="header">
       <div className="container">
@@ -17,13 +24,18 @@ function Header() {
             </a>
           </div>
           <nav className="header__nav">
-            <button className="header__btn-main-new _hover01" id="btnMainNew">
-              <a href="#popNewCard">Создать новую задачу</a>
+            <button
+              className="header__btn-main-new _hover01"
+              id="btnMainNew"
+              onClick={addCard}
+            >
+              {/* <a href="#popNewCard">Создать новую задачу</a> */}
+              Создать новую задачу
             </button>
-            <a href="#user-set-target" className="header__user _hover02">
+            <a className="header__user _hover02" onClick={toggleDropdown}>
               Ivan Ivanov
             </a>
-            <PopUserSet />
+            {isOpen && <PopUserSet />}
           </nav>
         </div>
       </div>
