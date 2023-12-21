@@ -1,4 +1,5 @@
-import "./Header.css";
+import {StyledHeader} from "./Header.styled"
+import {Container} from "../Common/Common.styled"
 import PopUserSet from "../PopUserSet/PopUserSet";
 import { useState } from "react";
 
@@ -10,8 +11,8 @@ function Header({ addCard }) {
   };
 
   return (
-    <header className="header">
-      <div className="container">
+    <StyledHeader>
+      <Container>
         <div className="header__block">
           <div className="header__logo _show _light">
             <a href="" target="_self">
@@ -38,8 +39,8 @@ function Header({ addCard }) {
             {isOpen && <PopUserSet />}
           </nav>
         </div>
-      </div>
-    </header>
+      </Container>
+      </ StyledHeader>
   );
 }
 

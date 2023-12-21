@@ -6,10 +6,13 @@ import PopExit from "./components/PopExit/Exit";
 import PopBrowse from "./components/PopBrowse/PopBrowse";
 import { cardList } from "./data";
 import { useEffect, useState } from "react";
+import Wrapper from "./components/Wrapper/Wrapper.styled";
+import { GlobalStyle } from "./Global.styled";
 
 function App() {
   const [cards, setCards] = useState(cardList);
   const [isLoading, setIsLoading] = useState(true);
+  // const [theme, setTheme] = useState('light');
 
   function addCard() {
     const newCard = {
@@ -27,26 +30,33 @@ function App() {
       setIsLoading(false);
     }, 2000);
   }, []);
+  
+  // function toggleTheme() {
+  //   if (theme === 'light') {
+  //     setTheme('dark');
+  //   } else {
+  //     setTheme('light');
+  //   }
+  // }
 
   return (
     <>
-      <div className="wrapper">
-        {/* <!-- pop-up start--> */}
+    <GlobalStyle />
+      <Wrapper>
         <PopExit />
 
         <NewCard />
 
         <PopBrowse />
-        {/* <!-- pop-up end--> */}
 
         <Header addCard={addCard} />
-        
+
         {isLoading ? (
           <div className="loading">Данные загружаются...</div>
         ) : (
           <Main cards={cards} />
         )}
-      </div>
+      </Wrapper>
     </>
   );
 }

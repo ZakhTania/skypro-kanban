@@ -1,33 +1,54 @@
+import {
+  AnimatedCard,
+  CardTheme,
+  CardsItem,
+  CardsCard,
+  CardGroup,
+  CardBtn,
+  CardBtnDiv,
+  ThemeP,
+  CardContent,
+  CardTitle,
+  CardDate,
+  CardDateP
+} from "./Card.styled";
+
 export default function Card({ theme, title, date }) {
+
   let color;
-  switch(theme) {
-case "Web Design": color = '_orange';
-break;
-case "Copywriting": color = '_purple';
-break;
-case "Research": color = '_green';
-break;
+  switch (theme) {
+    case "Web Design":
+      color = "_orange";
+      break;
+    case "Copywriting":
+      color = "_purple";
+      break;
+    case "Research":
+      color = "_green";
+      break;
+    default:
+      color = "_gray";
   }
+
   return (
-    <div className="cards__item">
-      <div className="cards__card card">
-        <div className="card__group">
-          <div className={"card__theme " + color}>
-          <p className={color}>{theme}</p>
-          </div>
-          <a href="#popBrowse" target="_self">
-            <div className="card__btn">
-              <div></div>
-              <div></div>
-              <div></div>
-            </div>
-          </a>
-        </div>
-        <div className="card__content">
-          <a href="" target="_blank">
-            <h3 className="card__title">{title}</h3>
-          </a>
-          <div className="card__date">
+    <AnimatedCard>
+    <CardsItem>
+      <CardsCard>
+        <CardGroup>
+          <CardTheme $themeColor={color}>
+            <ThemeP>{theme}</ThemeP>
+          </CardTheme>
+     <CardBtn>
+      <CardBtnDiv/>
+      <CardBtnDiv/>
+      <CardBtnDiv/>
+     </CardBtn>
+        </CardGroup>
+        <CardContent>
+          <CardTitle>
+            {title}
+          </CardTitle>
+          <CardDate>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="13"
@@ -56,10 +77,11 @@ break;
                 </clipPath>
               </defs>
             </svg>
-            <p>{date}</p>
-          </div>
-        </div>
-      </div>
-    </div>
+            <CardDateP>{date}</CardDateP>
+          </CardDate>
+          </CardContent>
+      </CardsCard>
+    </CardsItem>
+    </AnimatedCard>
   );
 }

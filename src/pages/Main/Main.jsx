@@ -1,3 +1,4 @@
+import {Container} from "../../components/Common/Common.styled"
 import "./Main.css";
 import Column from "../../components/Column/Column";
 
@@ -11,7 +12,7 @@ function Main({ cards }) {
   ];
   return (
     <main className="main">
-      <div className="container">
+     <Container>
         <div className="main__block">
           <div className="main__content">
             {statusList.map((status) => (
@@ -23,7 +24,7 @@ function Main({ cards }) {
             ))}
           </div>
         </div>
-      </div>
+      </Container>
     </main>
   );
 }

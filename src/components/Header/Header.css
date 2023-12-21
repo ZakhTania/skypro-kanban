@@ -1,8 +1,4 @@
-.header {
-    width: 100%;
-    margin: 0 auto;
-    background-color: #FFFFFF;
-  }
+
   .header__block {
     height: 70px;
     display: flex;
