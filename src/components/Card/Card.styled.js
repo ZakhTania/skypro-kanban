@@ -16,6 +16,7 @@ export const CardAnimation = keyframes`
 export const AnimatedCard = styled.div`
   animation: ${CardAnimation} 500ms linear;
 `;
+
 export const ThemeP = styled.p`
   font-size: 10px;
   font-weight: 600;
@@ -64,6 +65,7 @@ export const CardsCard = styled.div`
     padding: 15px 13px 19px;
   }
 `;
+
 export const CardGroup = styled.div`
   width: 100%;
   height: 20px;
@@ -72,6 +74,7 @@ export const CardGroup = styled.div`
   align-items: center;
   justify-content: space-between;
 `;
+
 export const CardBtnDiv = styled.div`
   width: 4px;
   height: 4px;
@@ -79,7 +82,7 @@ export const CardBtnDiv = styled.div`
   background-color: #94a6be;
 `;
 
-export const CardBtn = styled.div`
+export const CardBtn = styled.a`
   width: 24px;
   height: 24px;
   display: flex;
@@ -87,6 +90,7 @@ export const CardBtn = styled.div`
   justify-content: space-around;
   padding: 2px;
 `;
+
 export const CardContent = styled.div`
   height: 64px;
   display: flex;
@@ -94,6 +98,7 @@ export const CardContent = styled.div`
   align-items: flex-start;
   justify-content: space-between;
 `;
+
 export const CardTitle = styled.h3`
   font-size: 14px;
   font-weight: 500;
@@ -101,11 +106,16 @@ export const CardTitle = styled.h3`
   color: #000000;
   margin-bottom: 10px;
 `;
+
 export const CardDate = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  & svg {
+    width: 13px;
+  }
 `;
+
 export const CardDateP = styled.p`
   margin-left: 6px;
   font-size: 10px;
@@ -113,7 +123,3 @@ export const CardDateP = styled.p`
   color: #94a6be;
   letter-spacing: 0.2px;
 `;
-
-// .card__date svg {
-//   width: 13px;
-// }

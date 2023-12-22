@@ -14,7 +14,6 @@ import {
 } from "./Card.styled";
 
 export default function Card({ theme, title, date }) {
-  
   let color;
   switch (theme) {
     case "Web Design":

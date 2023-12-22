@@ -1,7 +1,7 @@
 import Calendar from "../Calendar/Calendar";
 import "./PopBrowse.css";
 
-function PopBrowse({ShowPopBrowse}) {
+function PopBrowse({ ShowPopBrowse }) {
   return (
     <div className="pop-browse" id="popBrowse">
       <div className="pop-browse__container">
@@ -74,7 +74,10 @@ function PopBrowse({ShowPopBrowse}) {
                   <a href="#">Удалить задачу</a>
                 </button>
               </div>
-              <button className="btn-browse__close _btn-bg _hover01" onClick={()=> ShowPopBrowse()}>
+              <button
+                className="btn-browse__close _btn-bg _hover01"
+                onClick={() => ShowPopBrowse()}
+              >
                 <a href="#">Закрыть</a>
               </button>
             </div>

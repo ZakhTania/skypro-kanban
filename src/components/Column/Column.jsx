@@ -1,10 +1,14 @@
-
 import Card from "../Card/Card";
-import { ColumnTitle, ColumnTitleP, StyledCards, StyledColumn } from "./Column.styled";
+import {
+  ColumnTitle,
+  ColumnTitleP,
+  StyledCards,
+  StyledColumn,
+} from "./Column.styled";
 
-function Column({ title, cardList}) {
+function Column({ title, cardList }) {
   return (
-   <StyledColumn>
+    <StyledColumn>
       <ColumnTitle>
         <ColumnTitleP>{title}</ColumnTitleP>
       </ColumnTitle>

@@ -48,8 +48,10 @@ export const HeaderBtnNew = styled.button`
 `;
 
 export const HeaderLogo = styled.div`
-   width: 85px;
-`
+  & img {
+    width: 85px;
+  }
+`;
 
 export const HeaderNav = styled.nav`
   max-width: 290px;

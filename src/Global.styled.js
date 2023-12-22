@@ -35,14 +35,14 @@ body {
   font-family: "Roboto", Arial, Helvetica, sans-serif;
   color: #000000;
 }
-`
+`;
 
 export const Loading = styled.div`
   max-width: 1260px;
   width: 100%;
   margin: 30px auto;
   padding: 0 40px;
-  color: #94A6BE;
+  color: #94a6be;
   font-size: 18px;
   font-weight: 400;
-`
+`;
