@@ -1,7 +1,7 @@
-import "./NewCard.css";
+import "./PopNewCard.css";
 import Calendar from "../Calendar/Calendar";
 
-function NewCard() {
+function PopNewCard() {
   return (
     <div className="pop-new-card" id="popNewCard">
       <div className="pop-new-card__container">
@@ -73,4 +73,4 @@ function NewCard() {
   );
 }
 
-export default NewCard;
+export default PopNewCard;

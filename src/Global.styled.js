@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
 * {
@@ -35,4 +35,14 @@ body {
   font-family: "Roboto", Arial, Helvetica, sans-serif;
   color: #000000;
 }
+`
+
+export const Loading = styled.div`
+  max-width: 1260px;
+  width: 100%;
+  margin: 30px auto;
+  padding: 0 40px;
+  color: #94A6BE;
+  font-size: 18px;
+  font-weight: 400;
 `

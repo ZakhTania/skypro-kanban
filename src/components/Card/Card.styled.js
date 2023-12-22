@@ -1,5 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import { themeStyles } from "../../lib/theme";
+import { breakpoints } from "../../lib/breakpoints";
 
 export const CardAnimation = keyframes`
   0% {
@@ -50,6 +51,18 @@ export const CardsCard = styled.div`
   align-items: flex-start;
   justify-content: stretch;
   padding: 15px 13px 19px;
+
+  @media screen and (max-width: ${breakpoints.xl}px) {
+    width: 220px;
+    height: 130px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: stretch;
+    padding: 15px 13px 19px;
+  }
 `;
 export const CardGroup = styled.div`
   width: 100%;
@@ -100,12 +113,6 @@ export const CardDateP = styled.p`
   color: #94a6be;
   letter-spacing: 0.2px;
 `;
-
-// .cards {
-//   width: 100%;
-//   display: block;
-//   position: relative;
-// }
 
 // .card__date svg {
 //   width: 13px;
