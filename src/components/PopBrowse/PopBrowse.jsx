@@ -1,5 +1,7 @@
+import { Link } from "react-router-dom";
 import Calendar from "../Calendar/Calendar";
 import "./PopBrowse.css";
+import { AppRoutes } from "../../lib/appRoutes";
 
 function PopBrowse({ ShowPopBrowse }) {
   return (
@@ -78,7 +80,7 @@ function PopBrowse({ ShowPopBrowse }) {
                 className="btn-browse__close _btn-bg _hover01"
                 onClick={() => ShowPopBrowse()}
               >
-                <a href="#">Закрыть</a>
+                <Link to={AppRoutes.HOME}>Закрыть</Link>
               </button>
             </div>
             <div className="pop-browse__btn-edit _hide">

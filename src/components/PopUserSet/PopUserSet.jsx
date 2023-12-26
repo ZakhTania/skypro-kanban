@@ -1,4 +1,6 @@
+import { Link } from "react-router-dom";
 import "./PopUserSet.css";
+import { AppRoutes } from "../../lib/appRoutes";
 
 function PopUserSet() {
   return (
@@ -11,7 +13,7 @@ function PopUserSet() {
         <input type="checkbox" className="checkbox" name="checkbox" />
       </div>
       <button type="button" className="_hover03">
-        <a href="#popExit">Выйти</a>
+        <Link to={AppRoutes.EXIT}>Выйти</Link>
       </button>
     </div>
   );

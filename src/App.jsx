@@ -1,55 +1,56 @@
 import "./App.css";
-import Header from "./components/Header/Header";
-import Main from "./pages/Main/Main";
-import PopExit from "./components/PopExit/Exit";
-import PopBrowse from "./components/PopBrowse/PopBrowse";
-import PopNewCard from "./components/PopNewCard/PopNewCard";
-import { cardList } from "./data";
-import { useEffect, useState } from "react";
-import Wrapper from "./components/Wrapper/Wrapper.styled";
-import { GlobalStyle, Loading } from "./Global.styled";
+import { Route, Routes } from "react-router-dom";
+import { AppRoutes } from "./lib/appRoutes";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+import MainPage from "./pages/MainPage/MainPage";
+import SignIn from "./pages/SignInPage/SignInPage";
+import SignUp from "./pages/SignUpPage/SignUpPage";
+import Exit from "./pages/ExitPage/ExitPage";
+import CardPage from "./pages/CardPage/CardPage";
+import NotFound from "./pages/NotFoundPage/NotFoundPage";
+import { useState } from "react";
 
 function App() {
-  const [cards, setCards] = useState(cardList);
-  const [isLoading, setIsLoading] = useState(true);
-
-  function addCard() {
-    const newCard = {
-      id: cards.length + 1,
-      theme: "Research",
-      title: "Название задачи",
-      date: "30.10.23",
-      status: "Без статуса",
-    };
-    setCards([...cards, newCard]);
+  const [isAuth, setIsAuth] = useState(true);
+  function exitAuth() {
+    setIsAuth(false);
   }
-
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-  }, []);
-
   return (
-    <>
-      <GlobalStyle />
-      <Wrapper>
-        <PopExit />
+    <Routes>
+      <Route
+        path={AppRoutes.HOME}
+        element={
+          <PrivateRoute isAuth={isAuth}>
+            <MainPage />
+          </PrivateRoute>
+        }
+      ></Route>
 
-        <PopNewCard />
+      <Route
+        path={AppRoutes.EXIT}
+        element={
+          <PrivateRoute isAuth={isAuth}>
+            <Exit exitAuth={exitAuth}/>
+          </PrivateRoute>
+        }
+      
+      ></Route>
 
-        <PopBrowse />
+      <Route
+        path={AppRoutes.CARD}
+        element={
+          <PrivateRoute isAuth={isAuth}>
+            <CardPage />
+          </PrivateRoute>
+        }
+      ></Route>
 
-        <Header addCard={addCard} />
+      <Route path={AppRoutes.SIGNIN} element={<SignIn />}></Route>
 
-        {isLoading ? (
-          <Loading>Данные загружаются...</Loading>
-        ) : (
-          <Main cards={cards} />
-        )}
-      </Wrapper>
-    </>
+      <Route path={AppRoutes.SIGNUP} element={<SignUp />}></Route>
+
+      <Route path={AppRoutes.NOT_FOUND} element={<NotFound />}></Route>
+    </Routes>
   );
 }
-
 export default App;
