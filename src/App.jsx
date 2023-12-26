@@ -1,11 +1,13 @@
 import "./App.css";
 import Header from "./components/Header/Header";
 import Main from "./pages/Main/Main";
-import NewCard from "./components/NewCard/NewCard";
 import PopExit from "./components/PopExit/Exit";
 import PopBrowse from "./components/PopBrowse/PopBrowse";
+import PopNewCard from "./components/PopNewCard/PopNewCard";
 import { cardList } from "./data";
 import { useEffect, useState } from "react";
+import Wrapper from "./components/Wrapper/Wrapper.styled";
+import { GlobalStyle, Loading } from "./Global.styled";
 
 function App() {
   const [cards, setCards] = useState(cardList);
@@ -30,23 +32,22 @@ function App() {
 
   return (
     <>
-      <div className="wrapper">
-        {/* <!-- pop-up start--> */}
+      <GlobalStyle />
+      <Wrapper>
         <PopExit />
 
-        <NewCard />
+        <PopNewCard />
 
         <PopBrowse />
-        {/* <!-- pop-up end--> */}
 
         <Header addCard={addCard} />
-        
+
         {isLoading ? (
-          <div className="loading">Данные загружаются...</div>
+          <Loading>Данные загружаются...</Loading>
         ) : (
           <Main cards={cards} />
         )}
-      </div>
+      </Wrapper>
     </>
   );
 }
