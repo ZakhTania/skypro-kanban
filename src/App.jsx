@@ -15,6 +15,9 @@ function App() {
   function exitAuth() {
     setIsAuth(false);
   }
+  function getInAuth() {
+    setIsAuth(true);
+  }
   return (
     <Routes>
       <Route
@@ -45,9 +48,9 @@ function App() {
         }
       ></Route>
 
-      <Route path={AppRoutes.SIGNIN} element={<SignIn />}></Route>
+      <Route path={AppRoutes.SIGNIN} element={<SignIn getInAuth={getInAuth}/>}></Route>
 
-      <Route path={AppRoutes.SIGNUP} element={<SignUp />}></Route>
+      <Route path={AppRoutes.SIGNUP} element={<SignUp getInAuth={getInAuth}/>}></Route>
 
       <Route path={AppRoutes.NOT_FOUND} element={<NotFound />}></Route>
     </Routes>

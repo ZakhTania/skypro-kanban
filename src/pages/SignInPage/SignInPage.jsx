@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { AppRoutes } from "../../lib/appRoutes";
 import "./SignInPage.css"
 
-export default function SignIn() {
+export default function SignIn({getInAuth}) {
   return (
     <div className="wrapper">
       <div className="container-signin">
@@ -26,7 +26,7 @@ export default function SignIn() {
                 id="formpassword"
                 placeholder="Пароль"
               />
-              <button className="modal__btn-enter _hover01" id="btnEnter">
+              <button className="modal__btn-enter _hover01" id="btnEnter" onClick={() => getInAuth()}>
                 <Link to={AppRoutes.HOME}>Войти</Link>
                 {/* <a href="../main.html"></a> */}
               </button>
