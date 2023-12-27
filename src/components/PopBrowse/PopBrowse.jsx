@@ -3,7 +3,7 @@ import Calendar from "../Calendar/Calendar";
 import "./PopBrowse.css";
 import { AppRoutes } from "../../lib/appRoutes";
 
-function PopBrowse({ ShowPopBrowse }) {
+function PopBrowse() {
   return (
     <div className="pop-browse" id="popBrowse">
       <div className="pop-browse__container">
@@ -78,7 +78,6 @@ function PopBrowse({ ShowPopBrowse }) {
               </div>
               <button
                 className="btn-browse__close _btn-bg _hover01"
-                onClick={() => ShowPopBrowse()}
               >
                 <Link to={AppRoutes.HOME}>Закрыть</Link>
               </button>
