@@ -1,5 +1,5 @@
 import "./App.css";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import { AppRoutes } from "./lib/appRoutes";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import MainPage from "./pages/MainPage/MainPage";
@@ -11,49 +11,33 @@ import NotFound from "./pages/NotFoundPage/NotFoundPage";
 import { useState } from "react";
 
 function App() {
-  const [isAuth, setIsAuth] = useState(true);
+  let navigate = useNavigate();
+
+  const [isAuth, setIsAuth] = useState(localStorage.getItem("token"));
+  console.log(isAuth);
+
   function exitAuth() {
+    localStorage.removeItem("token");
     setIsAuth(false);
+    navigate(AppRoutes.SIGNIN);
   }
-  // function getInAuth() {
-  //   setIsAuth(true);
-  // }
+  function setAuth() {
+    localStorage.setItem("token", "123456");
+    setIsAuth(localStorage.getItem("token"));
+    navigate(AppRoutes.HOME);
+  }
+
   return (
     <Routes>
-      <Route
-        path={AppRoutes.HOME}
-        element={
-          <PrivateRoute isAuth={isAuth}>
-            <MainPage />
-          </PrivateRoute>
-        }
-      >
-        <Route
-          path={AppRoutes.EXIT}
-          element={
-            <PrivateRoute isAuth={isAuth}>
-              <Exit exitAuth={exitAuth} />
-            </PrivateRoute>
-          }
-        ></Route>
-
-        <Route
-          path={AppRoutes.CARD}
-          element={
-            <PrivateRoute isAuth={isAuth}>
-              <CardPage />
-            </PrivateRoute>
-          }
-        ></Route>
+      <Route element={<PrivateRoute isAuth={isAuth} />}>
+        <Route path={AppRoutes.HOME} element={<MainPage />} />
+        <Route path={AppRoutes.EXIT} element={<Exit exitAuth={exitAuth} />} />
+        <Route path={AppRoutes.CARD} element={<CardPage />} />
       </Route>
 
-      {/* <Route path={AppRoutes.SIGNIN} element={<SignIn getInAuth={getInAuth}/>}></Route> */}
-      <Route path={AppRoutes.SIGNIN} element={<SignIn />}></Route>
-
-      {/* <Route path={AppRoutes.SIGNUP} element={<SignUp getInAuth={getInAuth}/>}></Route> */}
-      <Route path={AppRoutes.SIGNUP} element={<SignUp />}></Route>
-
-      <Route path={AppRoutes.NOT_FOUND} element={<NotFound />}></Route>
+      <Route path={AppRoutes.SIGNIN} element={<SignIn setAuth={setAuth} />} />
+      <Route path={AppRoutes.SIGNUP} element={<SignUp setAuth={setAuth} />} />
+      <Route path={AppRoutes.NOT_FOUND} element={<NotFound />} />
     </Routes>
   );
 }

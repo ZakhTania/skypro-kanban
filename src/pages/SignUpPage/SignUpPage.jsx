@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { AppRoutes } from "../../lib/appRoutes";
 import "./SignUpPage.css";
 
-export default function SignUp() {
+export default function SignUp({setAuth}) {
   return (
     <div className="wrapper">
       <div className="container-signup">
@@ -41,8 +41,8 @@ onClick={() => getInAuth()}
               <button
                 className="modal__btn-signup-ent _hover01"
                 id="SignUpEnter"
+                onClick={setAuth}
               >
-                <Link to={AppRoutes.HOME}>Зарегистрироваться</Link>
               </button>
               <div className="modal__form-group">
                 <p>
