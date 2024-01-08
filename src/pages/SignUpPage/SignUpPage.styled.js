@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
   background-color: #eaeef6;
 `;
 
-export const ContainerSignUp = styled.div`
+export const Container = styled.div`
   display: block;
   width: 100vw;
   min-height: 100vh;
@@ -64,7 +64,7 @@ export const ModalTtl = styled.div`
   }
 `;
 
-export const ModalBtnSignUpEnt = styled.button`
+export const ModalBtn = styled.button`
   width: 100%;
   height: 30px;
   background-color: #565eef;

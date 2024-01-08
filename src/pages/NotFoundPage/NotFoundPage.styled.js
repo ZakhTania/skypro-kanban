@@ -54,6 +54,9 @@ export const ModalBlock = styled.div`
 `;
 
 export const ModalTtl = styled.div`
+  & img {
+    width: 100%;
+  }
   & h2 {
     text-align: center;
     font-size: 20px;
@@ -86,33 +89,5 @@ export const ModalBtn = styled.button`
 
   @media screen and (max-width: ${breakpoints.sm}px) {
     height: 40px;
-  }
-`;
-
-export const ModalFormLogin = styled.form`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  & input:not(:last-child) {
-    margin-bottom: 7px;
-  }
-`;
-
-export const ModalFormGroup = styled.div`
-  text-align: center;
-
-  & p,
-  a {
-    color: rgba(148, 166, 190, 0.4);
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 150%;
-    letter-spacing: -0.14px;
-  }
-  & a {
-    text-decoration: underline;
   }
 `;
