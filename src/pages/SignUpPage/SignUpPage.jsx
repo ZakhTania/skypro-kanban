@@ -33,16 +33,11 @@ export default function SignUp({setAuth}) {
                 id="passwordFirst"
                 placeholder="Пароль"
               />
-              {/* <button
-                className="modal__btn-signup-ent _hover01"
-                id="SignUpEnter"
-onClick={() => getInAuth()}
-              > */}
               <button
                 className="modal__btn-signup-ent _hover01"
                 id="SignUpEnter"
                 onClick={setAuth}
-              >
+              >Зарегистрироваться
               </button>
               <div className="modal__form-group">
                 <p>

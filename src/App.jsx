@@ -30,9 +30,10 @@ function App() {
   return (
     <Routes>
       <Route element={<PrivateRoute isAuth={isAuth} />}>
-        <Route path={AppRoutes.HOME} element={<MainPage />} />
-        <Route path={AppRoutes.EXIT} element={<Exit exitAuth={exitAuth} />} />
-        <Route path={AppRoutes.CARD} element={<CardPage />} />
+        <Route path={AppRoutes.HOME} element={<MainPage />}>
+            <Route path={AppRoutes.EXIT} element={<Exit exitAuth={exitAuth} />} />
+            <Route path={AppRoutes.CARD} element={<CardPage />} /> 
+        </Route>
       </Route>
 
       <Route path={AppRoutes.SIGNIN} element={<SignIn setAuth={setAuth} />} />
