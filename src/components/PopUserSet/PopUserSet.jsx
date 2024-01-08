@@ -12,9 +12,10 @@ function PopUserSet() {
         <p>Темная тема</p>
         <input type="checkbox" className="checkbox" name="checkbox" />
       </div>
+      <Link to={AppRoutes.EXIT}>
       <button type="button" className="_hover03">
-        <Link to={AppRoutes.EXIT}>Выйти</Link>
-      </button>
+        Выйти
+      </button></Link>
     </div>
   );
 }
