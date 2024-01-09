@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import Calendar from "../Calendar/Calendar";
-import "./PopBrowse.css";
 import { AppRoutes } from "../../lib/appRoutes";
 import {
   PopBrowseBlock,

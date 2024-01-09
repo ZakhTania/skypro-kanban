@@ -1,4 +1,3 @@
-import "./PopNewCard.css";
 import Calendar from "../Calendar/Calendar";
 import { Subttl } from "../Common/Common.styled";
 import {
