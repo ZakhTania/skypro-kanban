@@ -1,5 +1,5 @@
-import { Container } from "../../components/Common/Common.styled";
-import Column from "../../components/Column/Column";
+import { Container } from "../Common/Common.styled";
+import Column from "../Column/Column";
 import { MainBlock, MainContent, StyledMain } from "./Main.styled";
 
 function Main({ cards }) {

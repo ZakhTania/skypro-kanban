@@ -82,7 +82,7 @@ export const CardBtnDiv = styled.div`
   background-color: #94a6be;
 `;
 
-export const CardBtn = styled.a`
+export const CardBtn = styled.div`
   width: 24px;
   height: 24px;
   display: flex;
