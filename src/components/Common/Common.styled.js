@@ -13,6 +13,14 @@ export const Container = styled.div`
   }
 `;
 
+export const Subttl = styled.label`
+	color: #000;
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 1;
+
+`
+
 export const hover01 = css`
   &:hover {
     background-color: #33399b;

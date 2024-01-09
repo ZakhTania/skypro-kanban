@@ -13,8 +13,8 @@ import {
   FormBrowseBlock,
   StyledPopBrowse,
   FormBrowseArea,
-  FormBrowseSubttl,
 } from "./PopBrowse.styled";
+import { Subttl } from "../Common/Common.styled";
 
 function PopBrowse() {
   return (
@@ -51,10 +51,10 @@ function PopBrowse() {
             <PopBrowseTopWrap>
               <PopBrowseTopForm>
                 <FormBrowseBlock>
-                  <FormBrowseSubttl>
+                  <Subttl>
                     Описание задачи
                   <FormBrowseArea placeholder="Введите описание задачи..." />
-                  </FormBrowseSubttl>
+                  </Subttl>
                 </FormBrowseBlock>
               </PopBrowseTopForm>
               <Calendar>

@@ -100,12 +100,3 @@ export const FormBrowseArea = styled.textarea`
   letter-spacing: -0.14px;
 }
 `;
-
-
-export const FormBrowseSubttl = styled.label`
-	color: #000;
-	font-size: 14px;
-	font-weight: 600;
-	line-height: 1;
-
-`
