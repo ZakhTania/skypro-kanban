@@ -1,22 +1,28 @@
 import { Link } from "react-router-dom";
-import "./PopUserSet.css";
 import { AppRoutes } from "../../lib/appRoutes";
+import {
+  HeaderPopUserSet,
+  PopUserSetBtn,
+  PopUserSetMail,
+  PopUserSetName,
+  PopUserSetTheme,
+  PopUserSetThemeInput,
+  PopUserSetThemeP,
+} from "./PopUserSet.styled";
 
 function PopUserSet() {
   return (
-    <div className="header__pop-user-set pop-user-set" id="user-set-target">
-      {/* <!-- <a href="">x</a> --> */}
-      <p className="pop-user-set__name">Ivan Ivanov</p>
-      <p className="pop-user-set__mail">ivan.ivanov@gmail.com</p>
-      <div className="pop-user-set__theme">
-        <p>Темная тема</p>
-        <input type="checkbox" className="checkbox" name="checkbox" />
-      </div>
+    <HeaderPopUserSet>
+      <PopUserSetName>Ivan Ivanov</PopUserSetName>
+      <PopUserSetMail>ivan.ivanov@gmail.com</PopUserSetMail>
+      <PopUserSetTheme>
+        <PopUserSetThemeP>Темная тема</PopUserSetThemeP>
+        <PopUserSetThemeInput type="checkbox" />
+      </PopUserSetTheme>
       <Link to={AppRoutes.EXIT}>
-      <button type="button" className="_hover03">
-        Выйти
-      </button></Link>
-    </div>
+        <PopUserSetBtn>Выйти</PopUserSetBtn>
+      </Link>
+    </HeaderPopUserSet>
   );
 }
 
