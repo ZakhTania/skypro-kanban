@@ -18,7 +18,6 @@ function Exit({ exitAuth }) {
           <PopExitTtl>
             <h2>Выйти из аккаунта?</h2>
           </PopExitTtl>
-          <form className="pop-exit__form" id="formExit" action="#">
             <PopExitGroup>
               <PopExitBtnYes onClick={exitAuth}>Да, выйти</PopExitBtnYes>
               {/* <button className="pop-exit__exit-yes _hover01" id="exitYes" >
@@ -28,7 +27,6 @@ function Exit({ exitAuth }) {
                 <PopExitBtnNo>Нет, остаться</PopExitBtnNo>
               </Link>
             </PopExitGroup>
-          </form>
         </PopExitBlock>
       </PopExitContainer>
     </StyledPopExit>

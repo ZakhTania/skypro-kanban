@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { breakpoints } from "../../lib/breakpoints";
 
 export const StyledPopBrowse = styled.div`
   display: block;
@@ -10,9 +11,13 @@ export const StyledPopBrowse = styled.div`
   top: 0;
   left: 0;
   z-index: 7;
+
+  @media screen and (max-width: ${breakpoints.lg}px) {
+    top: 70px;
+  }
 `;
 
-export const PopBrowseConteiner = styled.div`
+export const PopBrowseContainer = styled.div`
   width: 100%;
   height: 100%;
   min-height: 100vh;
@@ -22,6 +27,11 @@ export const PopBrowseConteiner = styled.div`
   align-items: center;
   justify-content: center;
   background: rgba(0, 0, 0, 0.4);
+
+  @media screen and (max-width: ${breakpoints.lg}px) {
+    padding: 0;
+    justify-content: flex-start;
+  }
 `;
 
 export const PopBrowseBlock = styled.div`
@@ -34,6 +44,14 @@ export const PopBrowseBlock = styled.div`
   border-radius: 10px;
   border: 0.7px solid #d4dbe5;
   position: relative;
+
+  @media screen and (max-width: ${breakpoints.lg}px) {
+    border-radius: 0;
+  }
+
+  @media screen and (max-width: ${breakpoints.md}px) {
+    padding: 20px 16px 32px;
+  }
 `;
 export const PopBrowseContent = styled.div`
   display: block;
@@ -58,12 +76,20 @@ export const PopBrowseTopWrap = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+
+  @media screen and (max-width: ${breakpoints.lg}px) {
+    display: block;
+  }
 `;
 export const PopBrowseTopForm = styled.form`
   max-width: 370px;
   width: 100%;
   display: block;
   margin-bottom: 20px;
+
+  @media screen and (max-width: ${breakpoints.md}px) {
+    max-width: 100%;
+  }
 `;
 export const FormBrowseBlock = styled.div`
   display: flex;
@@ -93,10 +119,15 @@ export const FormBrowseArea = styled.textarea`
   }
 
   &::-moz-placeholder {
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 1px;
-  color: #94A6BE;
-  letter-spacing: -0.14px;
-}
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1px;
+    color: #94a6be;
+    letter-spacing: -0.14px;
+  }
+
+  @media screen and (max-width: ${breakpoints.md}px) {
+    max-width: 100%;
+    height: 37px;
+  }
 `;

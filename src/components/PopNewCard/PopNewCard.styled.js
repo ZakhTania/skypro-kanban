@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { breakpoints } from "../../lib/breakpoints";
 
 export const StyledPopNewCard = styled.div`
   display: none;
@@ -10,6 +11,11 @@ export const StyledPopNewCard = styled.div`
   top: 0;
   left: 0;
   z-index: 6;
+
+  @media screen and (max-width: ${breakpoints.lg}px) {
+    top: 70px;
+  }
+
 `;
 
 export const PopNewCardContainer = styled.div`
@@ -22,6 +28,16 @@ export const PopNewCardContainer = styled.div`
   align-items: center;
   justify-content: center;
   background: rgba(0, 0, 0, 0.4);
+
+  @media screen and (max-width: ${breakpoints.lg}px) {
+    padding: 0;
+    justify-content: flex-start;
+  }
+
+  @media screen and (max-width: ${breakpoints.md}px) {
+    padding: 0;
+    justify-content: flex-start;
+  }
 `;
 
 export const PopNewCardBlock = styled.div`
@@ -34,6 +50,14 @@ export const PopNewCardBlock = styled.div`
   border-radius: 10px;
   border: 0.7px solid #d4dbe5;
   position: relative;
+
+  @media screen and (max-width: ${breakpoints.lg}px) {
+    border-radius: 0;
+  }
+
+  @media screen and (max-width: ${breakpoints.md}px) {
+    padding: 20px 16px 32px;
+  }
 `;
 
 export const PopNewCardContent = styled.div`
@@ -65,6 +89,10 @@ export const PopNewCardWrap = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+
+  @media screen and (max-width: ${breakpoints.lg}px) {
+    display: block;
+  }
 `;
 
 export const PopNewCardForm = styled.form`
@@ -72,6 +100,12 @@ export const PopNewCardForm = styled.form`
   width: 100%;
   display: block;
   margin-bottom: 20px;
+
+  @media screen and (max-width: ${breakpoints.md}px) {
+    max-width: 100%;
+    width: 100%;
+    display: block;
+  }
 `;
 
 export const FormNewBlock = styled.div`
@@ -121,6 +155,11 @@ export const FormNewTextarea = styled.textarea`
   color: #94A6BE;
   letter-spacing: -0.14px;
   }
+
+  @media screen and (max-width: ${breakpoints.md}px) {
+    max-width: 100%;
+    height: 34px;
+  }
 `;
 
 export const FormNewCreateBtn = styled.button`
@@ -135,4 +174,9 @@ export const FormNewCreateBtn = styled.button`
   line-height: 1;
   color: #FFFFFF;
   float: right;
+
+  @media screen and (max-width: ${breakpoints.md}px) {
+    width: 100%;
+    height: 40px;
+  }
 `;

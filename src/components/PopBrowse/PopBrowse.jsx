@@ -3,7 +3,7 @@ import Calendar from "../Calendar/Calendar";
 import { AppRoutes } from "../../lib/appRoutes";
 import {
   PopBrowseBlock,
-  PopBrowseConteiner,
+  PopBrowseContainer,
   PopBrowseContent,
   PopBrowseTopBlock,
   PopBrowseTopForm,
@@ -18,7 +18,7 @@ import { Subttl } from "../Common/Common.styled";
 function PopBrowse() {
   return (
     <StyledPopBrowse>
-      <PopBrowseConteiner>
+      <PopBrowseContainer>
         <PopBrowseBlock>
           <PopBrowseContent>
             <PopBrowseTopBlock>
@@ -103,7 +103,7 @@ function PopBrowse() {
             </div>
           </PopBrowseContent>
         </PopBrowseBlock>
-      </PopBrowseConteiner>
+      </PopBrowseContainer>
     </StyledPopBrowse>
   );
 }
