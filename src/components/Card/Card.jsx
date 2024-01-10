@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import {
   AnimatedCard,
   CardTheme,
@@ -12,6 +13,7 @@ import {
   CardDate,
   CardDateP,
 } from "./Card.styled";
+import { AppRoutes } from "../../lib/appRoutes";
 
 export default function Card({ theme, title, date }) {
   let color;
@@ -37,11 +39,13 @@ export default function Card({ theme, title, date }) {
             <CardTheme $themeColor={color}>
               <ThemeP>{theme}</ThemeP>
             </CardTheme>
+            <Link to={AppRoutes.CARD}>
             <CardBtn>
               <CardBtnDiv />
               <CardBtnDiv />
               <CardBtnDiv />
             </CardBtn>
+             </Link>
           </CardGroup>
           <CardContent>
             <CardTitle>{title}</CardTitle>

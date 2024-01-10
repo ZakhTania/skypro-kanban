@@ -1,54 +1,58 @@
-import "./PopNewCard.css";
 import Calendar from "../Calendar/Calendar";
+import { Subttl } from "../Common/Common.styled";
+import {
+  FormNewBlock,
+  FormNewCreateBtn,
+  FormNewInput,
+  FormNewTextarea,
+  PopNewCardBlock,
+  PopNewCardClose,
+  PopNewCardContainer,
+  PopNewCardContent,
+  PopNewCardForm,
+  PopNewCardTtl,
+  PopNewCardWrap,
+  StyledPopNewCard,
+} from "./PopNewCard.styled";
 
 function PopNewCard() {
   return (
-    <div className="pop-new-card" id="popNewCard">
-      <div className="pop-new-card__container">
-        <div className="pop-new-card__block">
-          <div className="pop-new-card__content">
-            <h3 className="pop-new-card__ttl">Создание задачи</h3>
-            <a href="#" className="pop-new-card__close">
-              &#10006;
-            </a>
-            <div className="pop-new-card__wrap">
-              <form
-                className="pop-new-card__form form-new"
-                id="formNewCard"
-                action="#"
-              >
-                <div className="form-new__block">
-                  <label htmlFor="formTitle" className="subttl">
+    <StyledPopNewCard>
+      <PopNewCardContainer>
+        <PopNewCardBlock>
+          <PopNewCardContent>
+            <PopNewCardTtl>Создание задачи</PopNewCardTtl>
+            <PopNewCardClose href="#">&#10006;</PopNewCardClose>
+            <PopNewCardWrap>
+              <PopNewCardForm>
+                <FormNewBlock>
+                  <Subttl>
                     Название задачи
-                  </label>
-                  <input
-                    className="form-new__input"
-                    type="text"
-                    name="name"
-                    id="formTitle"
-                    placeholder="Введите название задачи..."
-                    autoFocus
-                  />
-                </div>
-                <div className="form-new__block">
-                  <label htmlFor="textArea" className="subttl">
+                    <FormNewInput
+                      type="text"
+                      name="name"
+                      placeholder="Введите название задачи..."
+                      autoFocus
+                    />
+                  </Subttl>
+                </FormNewBlock>
+                <FormNewBlock>
+                  <Subttl>
                     Описание задачи
-                  </label>
-                  <textarea
-                    className="form-new__area"
-                    name="text"
-                    id="textArea"
-                    placeholder="Введите описание задачи..."
-                  ></textarea>
-                </div>
-              </form>
+                    <FormNewTextarea
+                      name="text"
+                      placeholder="Введите описание задачи..."
+                    />
+                  </Subttl>
+                </FormNewBlock>
+              </PopNewCardForm>
               <Calendar>
                 <p className="calendar__p date-end">
                   Выберите срок исполнения{" "}
                   <span className="date-control"></span>.
                 </p>
               </Calendar>
-            </div>
+            </PopNewCardWrap>
             <div className="pop-new-card__categories categories">
               <p className="categories__p subttl">Категория</p>
               <div className="categories__themes">
@@ -63,13 +67,11 @@ function PopNewCard() {
                 </div>
               </div>
             </div>
-            <button className="form-new__create _hover01" id="btnCreate">
-              Создать задачу
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+            <FormNewCreateBtn>Создать задачу</FormNewCreateBtn>
+          </PopNewCardContent>
+        </PopNewCardBlock>
+      </PopNewCardContainer>
+    </StyledPopNewCard>
   );
 }
 

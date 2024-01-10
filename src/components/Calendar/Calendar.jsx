@@ -1,4 +1,3 @@
-import "./Calendar.css";
 
 function Calendar({ children }) {
   return (
