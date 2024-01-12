@@ -15,8 +15,8 @@ function Column({ title, cardList }) {
       <StyledCards>
         {cardList.map((card) => (
           <Card
-            key={card.id}
-            theme={card.theme}
+            key={card._id}
+            theme={card.topic}
             title={card.title}
             date={card.date}
           />
