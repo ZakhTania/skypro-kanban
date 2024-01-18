@@ -64,5 +64,37 @@ export async function getSignUp({ login, name, password }) {
   }
 
   throw new Error("Не удалось загрузить данные, попробуйте позже");
+}
 
+export async function addTask({ title, topic, status, description, date }) {
+  const response = await fetch(TASKS_URL, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      title,
+      topic,
+      status,
+      description,
+      date,
+    }),
+  });
+
+  const data = await response.json();
+
+  return data;
+}
+
+export async function delTask(id) {
+  const response = await fetch(TASKS_URL + id, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  const data = await response.json();
+
+  return data;
 }
