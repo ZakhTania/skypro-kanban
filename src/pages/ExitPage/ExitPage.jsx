@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { AppRoutes } from "../../lib/appRoutes";
 import {
   PopExitBlock,
@@ -11,6 +11,8 @@ import {
 } from "./ExitPage.styled";
 
 function Exit({ exitAuth }) {
+  let navigate = useNavigate();
+  
   return (
     <StyledPopExit>
       <PopExitContainer>
@@ -18,15 +20,12 @@ function Exit({ exitAuth }) {
           <PopExitTtl>
             <h2>Выйти из аккаунта?</h2>
           </PopExitTtl>
-            <PopExitGroup>
-              <PopExitBtnYes onClick={exitAuth}>Да, выйти</PopExitBtnYes>
-              {/* <button className="pop-exit__exit-yes _hover01" id="exitYes" >
-                <Link to={AppRoutes.HOME} >Да, выйти</Link>
-              </button> */}
-              <Link to={AppRoutes.HOME}>
-                <PopExitBtnNo>Нет, остаться</PopExitBtnNo>
-              </Link>
-            </PopExitGroup>
+          <PopExitGroup>
+            <PopExitBtnYes onClick={exitAuth}>Да, выйти</PopExitBtnYes>
+            <PopExitBtnNo onClick={() => navigate(AppRoutes.HOME)}>
+              Нет, остаться
+            </PopExitBtnNo>
+          </PopExitGroup>
         </PopExitBlock>
       </PopExitContainer>
     </StyledPopExit>

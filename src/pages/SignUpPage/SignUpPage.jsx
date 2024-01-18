@@ -12,8 +12,37 @@ import {
 } from "./SignUpPage.styled";
 import Input from "../../components/Common/Input/Input";
 import { GlobalStyle } from "../../Global.styled";
+import { getSignUp } from "../../API";
+import { useState } from "react";
 
 export default function SignUp({ setAuth }) {
+  const [loginData, setLoginData] = useState({
+    login: "",
+    name: "",
+    password: "",
+  });
+
+  const onLoginChange = (e) => {
+    setLoginData({
+      ...loginData,
+      login: e.target.value,
+    });
+  };
+
+  const onPasswordChange = (e) => {
+    setLoginData({
+      ...loginData,
+      password: e.target.value,
+    });
+  };
+
+  const onNameChange = (e) => {
+    setLoginData({
+      ...loginData,
+      name: e.target.value,
+    });
+  };
+
   return (
     <>
       <GlobalStyle />
@@ -25,10 +54,35 @@ export default function SignUp({ setAuth }) {
                 <h2>Регистрация</h2>
               </ModalTtl>
               <ModalFormLogin>
-                <Input type="text" name="first-name" placeholder="Имя" />
-                <Input type="text" name="login" placeholder="Эл. почта" />
-                <Input type="password" name="password" placeholder="Пароль" />
-                <ModalBtn onClick={setAuth}>Зарегистрироваться</ModalBtn>
+                <Input
+                  type="text"
+                  name="first-name"
+                  placeholder="Имя"
+                  value={loginData.name}
+                  onChange={onNameChange}
+                />
+                <Input
+                  type="text"
+                  name="login"
+                  placeholder="Логин"
+                  value={loginData.login}
+                  onChange={onLoginChange}
+                />
+                <Input
+                  type="password"
+                  name="password"
+                  placeholder="Пароль"
+                  value={loginData.password}
+                  onChange={onPasswordChange}
+                />
+                <ModalBtn
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setAuth(loginData, getSignUp);
+                  }}
+                >
+                  Зарегистрироваться
+                </ModalBtn>
                 <ModalFormGroup>
                   <p>
                     Уже есть аккаунт?{" "}

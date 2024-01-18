@@ -12,8 +12,30 @@ import {
 } from "./SignInPage.styled";
 import Input from "../../components/Common/Input/Input";
 import { GlobalStyle } from "../../Global.styled";
+import { useState } from "react";
+import { getAuth } from "../../API";
 
 export default function SignIn({ setAuth }) {
+
+ 
+  const [loginData, setLoginData] = useState({
+    login: "",
+    password: "",
+  });
+
+  const onLoginChange = (e) => {
+    setLoginData({
+      ...loginData,
+      login: e.target.value,
+    });
+  };
+
+  const onPasswordChange = (e) => {
+    setLoginData({
+      ...loginData,
+      password: e.target.value,
+    });
+  };
   return (
     <>
       <GlobalStyle />
@@ -25,9 +47,28 @@ export default function SignIn({ setAuth }) {
                 <h2>Вход</h2>
               </ModalTtl>
               <ModalFormLogin>
-                <Input type="text" name="login" placeholder="Эл. почта" />
-                <Input type="password" name="password" placeholder="Пароль" />
-                <ModalBtn onClick={setAuth}>Войти</ModalBtn>
+                <Input
+                  type="text"
+                  name="login"
+                  placeholder="Логин"
+                  value={loginData.login}
+                  onChange={onLoginChange}
+                />
+                <Input
+                  type="password"
+                  name="password"
+                  placeholder="Пароль"
+                  value={loginData.password}
+                  onChange={onPasswordChange}
+                />
+                <ModalBtn 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setAuth(loginData, getAuth);
+                  }}
+                >
+                  Войти
+                </ModalBtn>
                 <ModalFormGroup>
                   <p>
                     Нужно зарегистрироваться?

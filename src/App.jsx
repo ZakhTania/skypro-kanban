@@ -13,26 +13,32 @@ import { useState } from "react";
 function App() {
   let navigate = useNavigate();
 
-  const [isAuth, setIsAuth] = useState(localStorage.getItem("token"));
-  console.log(isAuth);
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
 
   function exitAuth() {
-    localStorage.removeItem("token");
-    setIsAuth(false);
+    localStorage.removeItem("user");
+    setUser(null);
     navigate(AppRoutes.SIGNIN);
   }
-  function setAuth() {
-    localStorage.setItem("token", "123456");
-    setIsAuth(localStorage.getItem("token"));
-    navigate(AppRoutes.HOME);
+
+  async function setAuth(loginData, apiAuthFnc) {
+    try {
+      await apiAuthFnc(loginData).then((data) => {
+        localStorage.setItem("user", JSON.stringify(data.user));
+        setUser(JSON.parse(localStorage.getItem("user")));
+        navigate(AppRoutes.HOME);
+      });
+    } catch (error) {
+      alert(error.message);
+    }
   }
 
   return (
     <Routes>
-      <Route element={<PrivateRoute isAuth={isAuth} />}>
+      <Route element={<PrivateRoute isAuth={user} />}>
         <Route path={AppRoutes.HOME} element={<MainPage />}>
-            <Route path={AppRoutes.EXIT} element={<Exit exitAuth={exitAuth} />} />
-            <Route path={AppRoutes.CARD} element={<CardPage />} /> 
+          <Route path={AppRoutes.EXIT} element={<Exit exitAuth={exitAuth} />} />
+          <Route path={AppRoutes.CARD} element={<CardPage />} />
         </Route>
       </Route>
 
