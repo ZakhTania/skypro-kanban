@@ -13,9 +13,9 @@ import {
   CardDate,
   CardDateP,
 } from "./Card.styled";
-import { AppRoutes } from "../../lib/appRoutes";
 
-export default function Card({ theme, title, date }) {
+
+export default function Card({ theme, title, date, category, index }) {
   let color;
   switch (theme) {
     case "Web Design":
@@ -39,7 +39,7 @@ export default function Card({ theme, title, date }) {
             <CardTheme $themeColor={color}>
               <ThemeP>{theme}</ThemeP>
             </CardTheme>
-            <Link to={AppRoutes.CARD}>
+            <Link to={`/card/${category}/${index}`}>
             <CardBtn>
               <CardBtnDiv />
               <CardBtnDiv />

@@ -14,14 +14,21 @@ import Input from "../../components/Common/Input/Input";
 import { GlobalStyle } from "../../Global.styled";
 import { getSignUp } from "../../API";
 import { useState } from "react";
+import useUser from "../../hooks/useUser";
 
-export default function SignUp({ setAuth }) {
+export default function SignUp() {
+  const { login } = useUser();
   const [loginData, setLoginData] = useState({
     login: "",
     name: "",
     password: "",
   });
 
+  function setReg(loginData) {
+    getSignUp(loginData).then((data) => {
+      login(data.user);
+    });
+  }
   const onLoginChange = (e) => {
     setLoginData({
       ...loginData,
@@ -78,7 +85,7 @@ export default function SignUp({ setAuth }) {
                 <ModalBtn
                   onClick={(e) => {
                     e.preventDefault();
-                    setAuth(loginData, getSignUp);
+                    setReg(loginData);
                   }}
                 >
                   Зарегистрироваться

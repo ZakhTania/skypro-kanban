@@ -1,14 +1,15 @@
 import { DayPicker } from "react-day-picker";
+import 'react-day-picker/dist/style.css';
 import { ru } from "date-fns/locale";
 import { format } from "date-fns";
-import { useState } from "react";
 
-function Calendar({ children}) {
-  const [selected, setSelected] = useState();
+
+function Calendar({ children, selected, setSelected}) {
 
   let footer =  <div className="calendar__period">{children}</div>;
+
   if (selected) {
-    footer = <p> Срок исполнения: {format(selected, 'PP')}.</p>;
+    footer = <p className="calendar__period"> Срок исполнения: {format(selected, 'PP', {locale:ru})}.</p>;
   }
   return (
     <DayPicker

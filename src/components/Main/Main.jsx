@@ -1,8 +1,10 @@
 import { Container } from "../Common/Common.styled";
 import Column from "../Column/Column";
 import { MainBlock, MainContent, StyledMain } from "./Main.styled";
+import useTasks from "../../hooks/useTasks";
 
-function Main({ cards }) {
+function Main() {
+  const { tasks } = useTasks();
   const statusList = [
     "Без статуса",
     "Нужно сделать",
@@ -19,7 +21,7 @@ function Main({ cards }) {
               <Column
                 key={status}
                 title={status}
-                cardList={cards.filter((card) => card.status === status)}
+                cardList={tasks.filter((card) => card.status === status)}
               />
             ))}
           </MainContent>

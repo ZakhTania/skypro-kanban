@@ -14,14 +14,20 @@ import Input from "../../components/Common/Input/Input";
 import { GlobalStyle } from "../../Global.styled";
 import { useState } from "react";
 import { getAuth } from "../../API";
+import useUser from "../../hooks/useUser";
 
-export default function SignIn({ setAuth }) {
-
- 
+export default function SignIn() {
+  const { login } = useUser();
   const [loginData, setLoginData] = useState({
     login: "",
     password: "",
   });
+
+  function setAuth(loginData) {
+    getAuth(loginData).then((data) => {
+      login(data.user);
+    });
+  }
 
   const onLoginChange = (e) => {
     setLoginData({
@@ -61,10 +67,10 @@ export default function SignIn({ setAuth }) {
                   value={loginData.password}
                   onChange={onPasswordChange}
                 />
-                <ModalBtn 
+                <ModalBtn
                   onClick={(e) => {
                     e.preventDefault();
-                    setAuth(loginData, getAuth);
+                    setAuth(loginData);
                   }}
                 >
                   Войти

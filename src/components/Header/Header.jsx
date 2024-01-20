@@ -9,9 +9,12 @@ import {
   StyledHeader,
 } from "./Header.styled";
 import { Container } from "../Common/Common.styled";
+import { Link } from "react-router-dom";
+import { AppRoutes } from "../../lib/appRoutes";
+import useUser from "../../hooks/useUser";
 
-
-function Header({ addCard }) {
+function Header() {
+  const {user} = useUser();
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => {
@@ -33,8 +36,10 @@ function Header({ addCard }) {
             </a>
           </div> */}
           <HeaderNav>
-            <HeaderBtnNew onClick={addCard}> Создать новую задачу</HeaderBtnNew>
-            <HeaderUser onClick={toggleDropdown}>Ivan Ivanov</HeaderUser>
+            <Link to={AppRoutes.ADD_CARD}>
+              <HeaderBtnNew> Создать новую задачу</HeaderBtnNew>
+            </Link>
+            <HeaderUser onClick={toggleDropdown}>{user.name}</HeaderUser>
             {isOpen && <PopUserSet />}
           </HeaderNav>
         </HeaderBlock>
