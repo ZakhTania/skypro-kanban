@@ -99,3 +99,24 @@ export async function delTask(id) {
 
   return data;
 }
+
+export async function changeTask({taskId, cardData}) {
+
+  const response = await fetch(TASKS_URL +"/"+ taskId, {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      title: cardData.title,
+      topic: cardData.topic,
+      description: cardData.description,
+      status: cardData.status,
+      date: cardData.date,
+    }),
+  });
+
+  const data = await response.json();
+
+  return data;
+}

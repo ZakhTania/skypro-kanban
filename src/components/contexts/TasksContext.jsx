@@ -6,16 +6,17 @@ import { cardList } from "../../data";
 export const TasksContext = createContext(null);
 
 export function TaskProvider({ children }) {
-  const [tasks, setTasks] = useState(cardList);
+  const [tasks, setTasks] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
   function updateTasks({ data }) {
+    console.log(data);
     setTasks(data.tasks);
     navigate(AppRoutes.HOME);
     return tasks;
   }
-
+console.log(tasks);
   return (
     <TasksContext.Provider
       value={{ tasks, isLoading, setIsLoading, updateTasks }}

@@ -30,15 +30,16 @@ function Column({ title, cardList }) {
       <ColumnTitle>
         <ColumnTitleP>{title}</ColumnTitleP>
       </ColumnTitle>
+      {console.log(cardList)}
       <StyledCards>
-        {cardList.map((card, index) => (
+        {cardList.map((card) => (
           <Card
             key={card._id}
             theme={card.topic}
             title={card.title}
             date={card.date}
             category={category}
-            index={index + 1}
+            id={card._id}
           />
         ))}
       </StyledCards>

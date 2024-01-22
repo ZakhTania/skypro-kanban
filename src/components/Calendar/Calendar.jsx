@@ -9,7 +9,7 @@ function Calendar({ children, selected, setSelected}) {
   let footer =  <div className="calendar__period">{children}</div>;
 
   if (selected) {
-    footer = <p className="calendar__period"> Срок исполнения: {format(selected, 'PP', {locale:ru})}.</p>;
+    footer = <p className="calendar__period"> Срок исполнения: {format(selected, 'PP', {locale:ru})}</p>;
   }
   return (
     <DayPicker

@@ -11,7 +11,8 @@ import { getTasks } from "../../API";
 
 export default function MainPage() {
   const { user } = useUser();
-  const {  isLoading, setIsLoading, updateTasks } = useTasks();
+  const {  tasks, setIsLoading, updateTasks } = useTasks();
+
 
   useEffect(() => {
     try {
@@ -32,7 +33,8 @@ export default function MainPage() {
       <Wrapper>
         <Outlet />
         <Header />
-        {isLoading ? <Loading>Данные загружаются...</Loading> : <Main />}
+        {console.log(tasks)}
+        {tasks ? <Loading>Данные загружаются...</Loading> : <Main tasks={tasks} />}
       </Wrapper>
     </>
   );

@@ -1,15 +1,11 @@
 import { useState } from "react";
 import Calendar from "../Calendar/Calendar";
-import { Subttl } from "../Common/Common.styled";
 import {
-  CategoriesP,
-  Checkbox,
   FormNewBlock,
   FormNewCreateBtn,
   FormNewInput,
+  FormNewLabel,
   FormNewTextarea,
-  GreenLabel,
-  OrangeLabel,
   PopNewCardBlock,
   PopNewCardClose,
   PopNewCardContainer,
@@ -17,11 +13,17 @@ import {
   PopNewCardForm,
   PopNewCardTtl,
   PopNewCardWrap,
+  StyledPopNewCard,
+} from "./PopNewCard.styled";
+import {
+  CategoriesP,
+  Checkbox,
+  GreenLabel,
+  OrangeLabel,
   PurpleLabel,
   RadioToolbar,
   RadioToolbarInput,
-  StyledPopNewCard,
-} from "./PopNewCard.styled";
+} from "../Common/CategoriesToolbar.styled";
 import { AppRoutes } from "../../lib/appRoutes";
 import { Link } from "react-router-dom";
 import { addTask } from "../../API";
@@ -59,7 +61,7 @@ function PopNewCard() {
             <PopNewCardWrap>
               <PopNewCardForm>
                 <FormNewBlock>
-                  <Subttl>
+                  <FormNewLabel>
                     Название задачи
                     <FormNewInput
                       type="text"
@@ -71,10 +73,10 @@ function PopNewCard() {
                         setNewCard({ ...newCard, title: e.target.value })
                       }
                     />
-                  </Subttl>
+                  </FormNewLabel>
                 </FormNewBlock>
                 <FormNewBlock>
-                  <Subttl>
+                  <FormNewLabel>
                     Описание задачи
                     <FormNewTextarea
                       name="text"
@@ -84,7 +86,7 @@ function PopNewCard() {
                         setNewCard({ ...newCard, description: e.target.value })
                       }
                     />
-                  </Subttl>
+                  </FormNewLabel>
                 </FormNewBlock>
               </PopNewCardForm>
               <Calendar selected={selected} setSelected={setSelected}>
@@ -108,9 +110,9 @@ function PopNewCard() {
                 </div>
               </div>
             </div> */}
-            
+
             <Checkbox>
-             <CategoriesP>Категория</CategoriesP> 
+              <CategoriesP>Категория</CategoriesP>
               <RadioToolbar>
                 <RadioToolbarInput
                   type="radio"
@@ -122,10 +124,8 @@ function PopNewCard() {
                   }
                 />
                 <OrangeLabel htmlFor="radio1">Web Design</OrangeLabel>
-               
 
                 <RadioToolbarInput
-                $themeColor={"_green"}
                   type="radio"
                   id="radio2"
                   name="radios"
@@ -135,7 +135,6 @@ function PopNewCard() {
                   }
                 />
                 <GreenLabel htmlFor="radio2">Research</GreenLabel>
-              
 
                 <RadioToolbarInput
                   type="radio"

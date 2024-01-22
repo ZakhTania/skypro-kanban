@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { breakpoints } from "../../lib/breakpoints";
 import { Subttl } from "../Common/Common.styled";
 import { themeStyles } from "../../lib/theme";
+
 export const StyledPopBrowse = styled.div`
   display: block;
   width: 100%;
@@ -138,23 +139,57 @@ export const FormBrowseArea = styled.textarea`
 `;
 
 export const StatusThemeGray = styled.div`
-    border-radius: 24px;
-    border: 0.7px solid rgba(148, 166, 190, 0.4);
-    /* color: #94A6BE; */
-    padding: 11px 14px 10px;
-    margin-right: 7px;
-    margin-bottom: 7px;
-    background: #94A6BE;
-    color: #FFFFFF;
-`
+  border-radius: 24px;
+  border: 0.7px solid rgba(148, 166, 190, 0.4);
+  /* color: #94A6BE; */
+  padding: 11px 14px 10px;
+  margin-right: 7px;
+  margin-bottom: 7px;
+  background: #94a6be;
+  color: #ffffff;
+`;
 
 export const GrayP = styled.p`
-    font-size: 14px;
-    line-height: 1;
-    letter-spacing: -0.14px;
-    background: #94A6BE;
-    color: #FFFFFF;
-`
+  font-size: 14px;
+  line-height: 1;
+  letter-spacing: -0.14px;
+  background: #94a6be;
+  color: #ffffff;
+`;
+export const PopBrowseStatus = styled.div`
+  margin-bottom: 11px;
+`;
+export const PopBrowseStatusP = styled.p`
+  margin-bottom: 11px;
+
+  ${Subttl}
+`;
+export const StatusThemes = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+`;
+// export const StatusThemeInput = styled.input`
+//   display: none;
+//   &:checked + label {
+//     background: #94a6be;
+//     color: #ffffff;
+//   }
+// `;
+
+// export const StatusThemeLabel = styled.label`
+//   cursor: pointer;
+//   font-size: 14px;
+//   line-height: 1;
+//   letter-spacing: -0.14px;
+//   border-radius: 24px;
+//   border: 0.7px solid rgba(148, 166, 190, 0.4);
+//   color: #94a6be;
+//   padding: 11px 14px 10px;
+//   margin-right: 7px;
+//   margin-bottom: 7px;
+// `;
 
 export const ThemeP = styled.p`
   font-size: 14px;
@@ -176,3 +211,4 @@ export const CategoriesTheme = styled.div`
     color: ${({ $themeColor }) => themeStyles[$themeColor]?.color || "#06b16e"};
   }
 `;
+

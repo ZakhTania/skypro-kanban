@@ -3,9 +3,9 @@ import PopBrowse from '../../components/PopBrowse/PopBrowse'
 
 
 export default function CardPage() {
- const {id} = useParams();
+ const {category, id} = useParams();
 
     return (
-        <PopBrowse id={id}/>
+        <PopBrowse id={id} category={category}/>
    )
 }

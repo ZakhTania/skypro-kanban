@@ -12,21 +12,40 @@ import {
   FormBrowseBlock,
   StyledPopBrowse,
   FormBrowseArea,
+  GrayP,
+  StatusThemeGray,
+  FormBrowseAreaLabel,
+  CategoriesTheme,
+  ThemeP,
 } from "./PopBrowse.styled";
-import { Subttl } from "../Common/Common.styled";
 import useTasks from "../../hooks/useTasks";
 import { delTask } from "../../API";
 
-function PopBrowse({ id }) {
+
+function PopBrowse({ category, id }) {
+
   const { tasks, updateTasks } = useTasks();
+  const taskData = tasks.find((task) => task._id === id);
+  const taskId = taskData._id;
+  let color;
+  switch (taskData.topic) {
+    case "Web Design":
+      color = "_orange";
+      break;
+    case "Copywriting":
+      color = "_purple";
+      break;
+    case "Research":
+      color = "_green";
+      break;
+    default:
+      color = "_gray";
+  }
 
-  const taskData = tasks[id - 1];
-  const delId = taskData._id;
-
-   async function handleDel() {
-    await delTask(delId).then((data) => {
-      updateTasks({data});
-    })
+  async function handleDel() {
+    await delTask(taskId).then((data) => {
+      updateTasks({ data });
+    });
   }
 
   return (
@@ -36,63 +55,47 @@ function PopBrowse({ id }) {
           <PopBrowseContent>
             <PopBrowseTopBlock>
               <PopBrowseTtl>{taskData.title}</PopBrowseTtl>
-              <div className="categories__theme theme-top _orange _active-category">
+              <CategoriesTheme $themeColor={color}>
+                <ThemeP>{taskData.topic}</ThemeP>
+                </CategoriesTheme>
+              {/* <div className="categories__theme theme-top _orange _active-category">
                 <p className="_orange">{taskData.topic}</p>
-              </div>
+              </div> */}
             </PopBrowseTopBlock>
             <div className="pop-browse__status status">
-              <p className="status__p subttl">{taskData.status}</p>
-              <div className="status__themes">
-                <div className="status__theme _hide">
-                  <p>Без статуса</p>
+              <p className="status__p subttl">Статус</p>
+                <div className="status__themes">
+                  <StatusThemeGray>
+                    <GrayP>{taskData.status}</GrayP>
+                  </StatusThemeGray>
                 </div>
-                <div className="status__theme _gray">
-                  <p className="_gray">Нужно сделать</p>
-                </div>
-                <div className="status__theme _hide">
-                  <p>В работе</p>
-                </div>
-                <div className="status__theme _hide">
-                  <p>Тестирование</p>
-                </div>
-                <div className="status__theme _hide">
-                  <p>Готово</p>
-                </div>
-              </div>
             </div>
             <PopBrowseTopWrap>
               <PopBrowseTopForm>
                 <FormBrowseBlock>
-                  <Subttl>
+                  <FormBrowseAreaLabel>
                     Описание задачи
-                    {taskData.text ? (
                       <FormBrowseArea
-                        value={taskData.text}
+                        value={taskData.text ? taskData.text : ""}
                         placeholder="Описание задачи..."
+                        readOnly
                       />
-                    ) : (
-                      <FormBrowseArea placeholder="Описание задачи..." />
-                    )}
-                  </Subttl>
+                 </FormBrowseAreaLabel>
                 </FormBrowseBlock>
               </PopBrowseTopForm>
-              <Calendar>
-                <p className="calendar__p date-end">
-                  Срок исполнения:{" "}
-                  <span className="date-control">{taskData.date}</span>
-                </p>
-              </Calendar>
+                <Calendar readOnly>
+                  <p className="calendar__p date-end">
+                    Срок исполнения:
+                    <span className="date-control">{taskData.date}</span>
+                  </p>
+                </Calendar>
             </PopBrowseTopWrap>
-            <div className="theme-down__categories theme-down">
-              <p className="categories__p subttl">Категория</p>
-              <div className="categories__theme _orange _active-category">
-                <p className="_orange">{taskData.topic}</p>
-              </div>
-            </div>
             <div className="pop-browse__btn-browse ">
               <div className="btn-group">
-                <button className="btn-browse__edit _btn-bor _hover03">
-                  <a href="#">Редактировать задачу</a>
+                <button
+                  className="btn-browse__edit _btn-bor _hover03"
+                >
+                  <Link to={`/edit-card/${category}/${id}`}>Редактировать задачу</Link>
                 </button>
                 <button
                   className="btn-browse__delete _btn-bor _hover03"
@@ -103,25 +106,6 @@ function PopBrowse({ id }) {
               </div>
               <button className="btn-browse__close _btn-bg _hover01">
                 <Link to={AppRoutes.HOME}>Закрыть</Link>
-              </button>
-            </div>
-            <div className="pop-browse__btn-edit _hide">
-              <div className="btn-group">
-                <button className="btn-edit__edit _btn-bg _hover01">
-                  <a href="#">Сохранить</a>
-                </button>
-                <button className="btn-edit__edit _btn-bor _hover03">
-                  <a href="#">Отменить</a>
-                </button>
-                <button
-                  className="btn-edit__delete _btn-bor _hover03"
-                  id="btnDelete"
-                >
-                  Удалить задачу
-                </button>
-              </div>
-              <button className="btn-edit__close _btn-bg _hover01">
-                <a href="#">Закрыть</a>
               </button>
             </div>
           </PopBrowseContent>

@@ -1,17 +1,13 @@
 import { Container } from "../Common/Common.styled";
 import Column from "../Column/Column";
 import { MainBlock, MainContent, StyledMain } from "./Main.styled";
-import useTasks from "../../hooks/useTasks";
+// import useTasks from "../../hooks/useTasks";
+import { statusList } from "../../lib/statusList";
 
-function Main() {
-  const { tasks } = useTasks();
-  const statusList = [
-    "Без статуса",
-    "Нужно сделать",
-    "В работе",
-    "Тестирование",
-    "Готово",
-  ];
+function Main({tasks}) {
+if(!tasks) {
+  return
+}
   return (
     <StyledMain>
       <Container>

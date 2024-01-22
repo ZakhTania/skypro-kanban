@@ -9,12 +9,16 @@ import {
   PopUserSetThemeInput,
   PopUserSetThemeP,
 } from "./PopUserSet.styled";
+import useUser from "../../hooks/useUser";
 
 function PopUserSet() {
+
+const { user } = useUser();
+
   return (
     <HeaderPopUserSet>
-      <PopUserSetName>Ivan Ivanov</PopUserSetName>
-      <PopUserSetMail>ivan.ivanov@gmail.com</PopUserSetMail>
+      <PopUserSetName>{user.name}</PopUserSetName>
+      <PopUserSetMail>{user.login}</PopUserSetMail>
       <PopUserSetTheme>
         <PopUserSetThemeP>Темная тема</PopUserSetThemeP>
         <PopUserSetThemeInput type="checkbox" />

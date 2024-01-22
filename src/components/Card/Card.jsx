@@ -14,8 +14,7 @@ import {
   CardDateP,
 } from "./Card.styled";
 
-
-export default function Card({ theme, title, date, category, index }) {
+export default function Card({ theme, title, date, category, id }) {
   let color;
   switch (theme) {
     case "Web Design":
@@ -39,7 +38,7 @@ export default function Card({ theme, title, date, category, index }) {
             <CardTheme $themeColor={color}>
               <ThemeP>{theme}</ThemeP>
             </CardTheme>
-            <Link to={`/card/${category}/${index}`}>
+            <Link to={`/edit-card/${category}/${id}`}>
             <CardBtn>
               <CardBtnDiv />
               <CardBtnDiv />
@@ -48,7 +47,9 @@ export default function Card({ theme, title, date, category, index }) {
              </Link>
           </CardGroup>
           <CardContent>
+            <Link to={`/card/${category}/${id}`}>
             <CardTitle>{title}</CardTitle>
+            </Link>
             <CardDate>
               <svg
                 xmlns="http://www.w3.org/2000/svg"

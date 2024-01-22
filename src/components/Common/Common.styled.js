@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 import { breakpoints } from "../../lib/breakpoints";
 
+
 export const Container = styled.div`
   max-width: 1260px;
   width: 100%;
@@ -13,7 +14,7 @@ export const Container = styled.div`
   }
 `;
 
-export const Subttl = styled.label`
+export const Subttl = css`
 	color: #000;
 	font-size: 14px;
 	font-weight: 600;
