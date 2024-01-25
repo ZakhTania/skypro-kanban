@@ -76,7 +76,7 @@ function PopBrowse({ category, id }) {
                   <FormBrowseAreaLabel>
                     Описание задачи
                       <FormBrowseArea
-                        value={taskData.text ? taskData.text : ""}
+                        value={taskData.description}
                         placeholder="Описание задачи..."
                         readOnly
                       />
