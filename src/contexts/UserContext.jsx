@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { AppRoutes } from "../../lib/appRoutes";
+import { AppRoutes } from "../lib/appRoutes";
 
 export const UserContext = createContext(null);
 
@@ -19,5 +19,9 @@ export function UserProvider({ children }) {
     setUser(null);
     navigate(AppRoutes.SIGNIN);
   }
-  return <UserContext.Provider value={{user, login, logOut}}>{children}</UserContext.Provider>;
+  return (
+    <UserContext.Provider value={{ user, login, logOut }}>
+      {children}
+    </UserContext.Provider>
+  );
 }
