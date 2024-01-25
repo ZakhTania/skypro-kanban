@@ -11,28 +11,42 @@ import { getTasks } from "../../API";
 
 export default function MainPage() {
   const { user } = useUser();
-  const {  tasks, setIsLoading, updateTasks } = useTasks();
-const [error, setError] = useState(null)
+  const { tasks, setIsLoading, updateTasks } = useTasks();
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-
-      setIsLoading(true);
-      getTasks({ user }).then((data) => {
+    setIsLoading(true);
+    getTasks({ user })
+      .then((data) => {
         updateTasks({ data });
-      }).catch((error) => {
+      })
+      .catch((error) => {
         setError(error.message);
-      }).finally(() => {
-         setIsLoading(false);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
-    }, [user]);
+  }, [user]);
 
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setIsOpen((prevState) => !prevState);
+  };
   return (
     <>
       <GlobalStyle />
       <Wrapper>
-        <Outlet />
-        <Header />
-        {    error ? <Loading>{error}</Loading> : !tasks ?  <Loading>Данные загружаются...</Loading>: <Main /> }
+        <Outlet toggleDropdown={toggleDropdown} />
+        <Header isOpen={isOpen} toggleDropdown={toggleDropdown} />
+        {error ? (
+          <Loading>{error}</Loading>
+        ) : !tasks ? (
+          <Loading>Данные загружаются...</Loading>
+        ) : (
+          <Main />
+        )}
       </Wrapper>
     </>
   );

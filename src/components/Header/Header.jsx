@@ -1,4 +1,3 @@
-import { useState } from "react";
 import PopUserSet from "../PopUserSet/PopUserSet";
 import {
   HeaderBlock,
@@ -13,13 +12,9 @@ import { Link } from "react-router-dom";
 import { AppRoutes } from "../../lib/appRoutes";
 import useUser from "../../hooks/useUser";
 
-function Header() {
+function Header({ isOpen, toggleDropdown}) {
+  
   const {user} = useUser();
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleDropdown = () => {
-    setIsOpen((prevState) => !prevState);
-  };
 
   return (
     <StyledHeader>

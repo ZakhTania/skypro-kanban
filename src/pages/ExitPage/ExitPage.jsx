@@ -11,7 +11,7 @@ import {
 } from "./ExitPage.styled";
 import useUser from "../../hooks/useUser";
 
-function Exit() {
+function Exit({toggleDropdown}) {
   let navigate = useNavigate();
 
   const {logOut} = useUser();
@@ -25,7 +25,9 @@ function Exit() {
           </PopExitTtl>
           <PopExitGroup>
             <PopExitBtnYes onClick={logOut}>Да, выйти</PopExitBtnYes>
-            <PopExitBtnNo onClick={() => navigate(AppRoutes.HOME)}>
+            <PopExitBtnNo onClick={() => {
+              toggleDropdown();
+              navigate(AppRoutes.HOME)}}>
               Нет, остаться
             </PopExitBtnNo>
           </PopExitGroup>
