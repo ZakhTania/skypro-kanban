@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { GlobalStyle, Loading } from "../../Global.styled";
 import Wrapper from "../../components/Wrapper/Wrapper.styled";
 import Header from "../../components/Header/Header";
@@ -12,20 +12,19 @@ import { getTasks } from "../../API";
 export default function MainPage() {
   const { user } = useUser();
   const {  tasks, setIsLoading, updateTasks } = useTasks();
-
+const [error, setError] = useState(null)
 
   useEffect(() => {
-    try {
+
       setIsLoading(true);
       getTasks({ user }).then((data) => {
         updateTasks({ data });
+      }).catch((error) => {
+        setError(error.message);
+      }).finally(() => {
+         setIsLoading(false);
       });
-    } catch (error) {
-      alert(error.message);
-    } finally {
-      setIsLoading(false);
-    }
-  }, [user]);
+    }, [user]);
 
   return (
     <>
@@ -33,8 +32,7 @@ export default function MainPage() {
       <Wrapper>
         <Outlet />
         <Header />
-        {console.log(tasks)}
-        {tasks ? <Loading>Данные загружаются...</Loading> : <Main tasks={tasks} />}
+        {    error ? <Loading>{error}</Loading> : !tasks ?  <Loading>Данные загружаются...</Loading>: <Main /> }
       </Wrapper>
     </>
   );
