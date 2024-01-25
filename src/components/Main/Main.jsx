@@ -1,13 +1,13 @@
 import { Container } from "../Common/Common.styled";
 import Column from "../Column/Column";
 import { MainBlock, MainContent, StyledMain } from "./Main.styled";
-// import useTasks from "../../hooks/useTasks";
+import useTasks from "../../hooks/useTasks";
 import { statusList } from "../../lib/statusList";
 
-function Main({tasks}) {
-if(!tasks) {
-  return
-}
+function Main() {
+
+const {tasks} = useTasks();
+
   return (
     <StyledMain>
       <Container>

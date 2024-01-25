@@ -12,7 +12,6 @@ import { AddCardPage } from "./pages/AddCardPage/AddCardPage";
 import EditCardPage from "./pages/EditCardPage/EditCardPage";
 
 function App() {
-
   return (
     <Routes>
       <Route element={<PrivateRoute />}>
@@ -25,7 +24,7 @@ function App() {
       </Route>
 
       <Route path={AppRoutes.SIGNIN} element={<SignIn />} />
-      <Route path={AppRoutes.SIGNUP} element={<SignUp  />} />
+      <Route path={AppRoutes.SIGNUP} element={<SignUp />} />
       <Route path={AppRoutes.NOT_FOUND} element={<NotFound />} />
     </Routes>
   );

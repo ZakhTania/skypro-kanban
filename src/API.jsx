@@ -101,7 +101,8 @@ export async function delTask(id) {
 }
 
 export async function changeTask({taskId, cardData}) {
-
+console.log(taskId);
+console.log(cardData);
   const response = await fetch(TASKS_URL +"/"+ taskId, {
     method: "PUT",
     headers: {

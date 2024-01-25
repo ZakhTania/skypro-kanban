@@ -30,7 +30,6 @@ function Column({ title, cardList }) {
       <ColumnTitle>
         <ColumnTitleP>{title}</ColumnTitleP>
       </ColumnTitle>
-      {console.log(cardList)}
       <StyledCards>
         {cardList.map((card) => (
           <Card
