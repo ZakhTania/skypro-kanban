@@ -37,25 +37,17 @@ import StatusToolbar from "../StatusToolbar/StatusToolbar";
 
 function PopEditCard() {
   const { id } = useParams();
-
   const { tasks, updateTasks } = useTasks();
-
-console.log(tasks);
-
   const taskData = tasks.find((task) => {
-    console.log(id);
-    console.log(task);
-
     return task._id == id;
   });
-  console.log(taskData);
-  const taskId = taskData;
+  const taskId = taskData._id;
   const [selected, setSelected] = useState(taskData.date);
   const [cardData, setCardData] = useState({
     id: taskData._id,
     title: taskData.title,
     topic: taskData.topic,
-    description: "",
+    description: taskData.description,
     status: taskData.status,
     date: taskData.date,
   });
@@ -82,8 +74,11 @@ console.log(tasks);
   }
 
   async function handleChange() {
-    console.log(taskId);
-    console.log(cardData);
+    setCardData({
+      ...cardData,
+      date: selected,
+    });
+
     await changeTask({ taskId, cardData }).then((data) => {
       updateTasks({ data });
       console.log(tasks);
@@ -127,7 +122,7 @@ console.log(tasks);
                   </FormBrowseAreaLabel>
                   <FormBrowseArea
                     id="editTextArea01"
-                    value={taskData.description}
+                    defaultValue={taskData.description}
                     placeholder="Описание задачи..."
                     onChange={(e) =>
                       setCardData({
@@ -138,7 +133,7 @@ console.log(tasks);
                   />
                 </FormBrowseBlock>
               </PopBrowseTopForm>
-              <Calendar selected={selected} setSelected={setSelected}>
+              <Calendar  selected={selected} setSelected={setSelected}>
                 <p className="calendar__p date-end">
                   Срок исполнения:
                   <span className="date-control">{taskData.date}</span>
