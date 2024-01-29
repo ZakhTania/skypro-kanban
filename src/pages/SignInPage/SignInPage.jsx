@@ -5,9 +5,11 @@ import {
   Modal,
   ModalBlock,
   ModalBtn,
+  ModalBtnErr,
   ModalFormGroup,
   ModalFormLogin,
   ModalTtl,
+  TextError,
   Wrapper,
 } from "./SignInPage.styled";
 import Input from "../../components/Common/Input/Input";
@@ -17,6 +19,7 @@ import { getAuth } from "../../API";
 import useUser from "../../hooks/useUser";
 
 export default function SignIn() {
+  const [error, setError] = useState(false);
   const { login } = useUser();
   const [loginData, setLoginData] = useState({
     login: "",
@@ -24,9 +27,14 @@ export default function SignIn() {
   });
 
   function setAuth(loginData) {
-    getAuth(loginData).then((data) => {
-      login(data.user);
-    });
+    getAuth(loginData)
+      .then((data) => {
+        login(data.user);
+      })
+      .catch((error) => {
+        setError(error.message);
+        console.log(error);
+      });
   }
 
   const onLoginChange = (e) => {
@@ -42,6 +50,7 @@ export default function SignIn() {
       password: e.target.value,
     });
   };
+
   return (
     <>
       <GlobalStyle />
@@ -56,9 +65,13 @@ export default function SignIn() {
                 <Input
                   type="text"
                   name="login"
-                  placeholder="Логин"
+                  placeholder="Эл. почта"
                   value={loginData.login}
                   onChange={onLoginChange}
+                  err={error ? "error" : null}
+                  onClick={() => {
+                    setError(false);
+                  }}
                 />
                 <Input
                   type="password"
@@ -66,15 +79,36 @@ export default function SignIn() {
                   placeholder="Пароль"
                   value={loginData.password}
                   onChange={onPasswordChange}
-                />
-                <ModalBtn
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setAuth(loginData);
+                  err={error ? "error" : null}
+                  onClick={() => {
+                    setError(false);
                   }}
-                >
-                  Войти
-                </ModalBtn>
+                />
+
+                {error ? (
+                  <>
+                    <TextError>{error}</TextError>
+                    <ModalBtnErr
+                      disabled
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setAuth(loginData);
+                      }}
+                    >
+                      Войти
+                    </ModalBtnErr>
+                  </>
+                ) : (
+                  <ModalBtn
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setAuth(loginData);
+                    }}
+                  >
+                    Войти
+                  </ModalBtn>
+                )}
+
                 <ModalFormGroup>
                   <p>
                     Нужно зарегистрироваться?
