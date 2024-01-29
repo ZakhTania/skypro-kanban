@@ -1,7 +1,6 @@
 import styled, { css } from "styled-components";
 import { breakpoints } from "../../lib/breakpoints";
 
-
 export const Container = styled.div`
   max-width: 1260px;
   width: 100%;
@@ -15,12 +14,11 @@ export const Container = styled.div`
 `;
 
 export const Subttl = css`
-	color: #000;
-	font-size: 14px;
-	font-weight: 600;
-	line-height: 1;
-
-`
+  color: ${(props) => props.theme.text};
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+`;
 
 export const hover01 = css`
   &:hover {
@@ -41,12 +39,12 @@ export const hover02 = css`
 export const hover03 = css`
   &:hover {
     background-color: #33399b;
-    color: #ffffff;
+    color: ${(props) => props.theme.head};
   }
 `;
 
 export const hover03A = css`
   &:hover {
-    color: #ffffff;
+    color: ${(props) => props.theme.head};
   }
 `;

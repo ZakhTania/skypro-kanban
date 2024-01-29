@@ -20,4 +20,7 @@ export const StatusThemeLabel = styled.label`
   padding: 11px 14px 10px;
   margin-right: 7px;
   margin-bottom: 7px;
+  &:hover {
+    background-color: #EAEEF6;
+  }
 `;

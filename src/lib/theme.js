@@ -13,6 +13,6 @@ export const themeStyles = {
   },
   _gray: {
     backgroundColor: "#94a6be",
-    color: "#ffffff",
+    color: "${(props) => props.theme.head}",
   },
 };

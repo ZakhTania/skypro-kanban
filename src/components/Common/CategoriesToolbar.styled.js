@@ -1,16 +1,22 @@
 import styled from "styled-components";
 import { themeStyles } from "../../lib/theme";
+import { breakpoints } from "../../lib/breakpoints";
 
 export const Checkbox = styled.div`
   margin-bottom: 20px;
 `;
 
 export const CategoriesP = styled.p`
-  color: #000;
+  display: block;
+  color: ${(props) => props.theme.text};
   font-size: 14px;
   font-weight: 600;
   line-height: 1;
   margin-bottom: 14px;
+
+  @media screen and (max-width: ${breakpoints.md}px) {
+    display: none;
+  }
 `;
 
 export const RadioToolbar = styled.div`
@@ -18,24 +24,6 @@ export const RadioToolbar = styled.div`
   flex-wrap: nowrap;
   align-items: flex-start;
   justify-content: flex-start;
-
-  /* & label {
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 14px;
-    white-space: nowrap;
-    display: inline-block;
-    width: auto;
-    height: 30px;
-    padding: 8px 20px;
-    border-radius: 24px;
-    margin-right: 7px;
-    opacity: 0.4;
-  }
-  & label:hover {
-    opacity: 1 !important;
-  } */
 `;
 
 export const RadioToolbarInput = styled.input`

@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { breakpoints } from "../../lib/breakpoints";
 import { Subttl } from "../Common/Common.styled";
 
-
 export const StyledPopNewCard = styled.div`
   display: block;
   width: 100%;
@@ -44,12 +43,12 @@ export const PopNewCardContainer = styled.div`
 export const PopNewCardBlock = styled.div`
   display: block;
   margin: 0 auto;
-  background-color: #ffffff;
+  background-color: ${(props) => props.theme.head};
   max-width: 630px;
   width: 100%;
   padding: 40px 30px 48px;
   border-radius: 10px;
-  border: 0.7px solid #d4dbe5;
+  border: 0.7px solid ${(props) => props.theme.border};
   position: relative;
 
   @media screen and (max-width: ${breakpoints.lg}px) {
@@ -67,7 +66,7 @@ export const PopNewCardContent = styled.div`
 `;
 
 export const PopNewCardTtl = styled.h3`
-  color: #000;
+  color: ${(props) => props.theme.text};
   font-size: 20px;
   font-weight: 600;
   line-height: 24px;
@@ -82,7 +81,7 @@ export const PopNewCardClose = styled.div`
   cursor: pointer;
 
   &:hover {
-    color: #000000;
+    color: ${(props) => props.theme.text};
   }
 `;
 
@@ -125,6 +124,7 @@ export const FormNewInput = styled.input`
   line-height: 1;
   letter-spacing: -0.14px;
   margin: 20px 0;
+  color: ${(props) => props.theme.text};
 
   &::placeholder,
   ::-moz-placeholder {
@@ -136,7 +136,8 @@ export const FormNewInput = styled.input`
   }
 `;
 export const FormNewLabel = styled.label`
-${Subttl}`
+  ${Subttl}
+`;
 export const FormNewTextarea = styled.textarea`
   width: 100%;
   outline: none;
@@ -144,12 +145,14 @@ export const FormNewTextarea = styled.textarea`
   background: transparent;
   border: 0.7px solid rgba(148, 166, 190, 0.4);
   border-radius: 8px;
+  font-family: inherit;
   font-size: 14px;
   line-height: 1;
   letter-spacing: -0.14px;
   max-width: 370px;
   margin-top: 14px;
   height: 200px;
+color: ${(props) => props.theme.text};
 
   &::placeholder,
   ::-moz-placeholder {
@@ -169,14 +172,14 @@ export const FormNewTextarea = styled.textarea`
 export const FormNewCreateBtn = styled.button`
   width: 132px;
   height: 30px;
-  background-color: #565eef;
+  background-color: ${(prop) => (prop.$err ? "#94a6be" : "#565eef")};
   border-radius: 4px;
   border: 0;
   outline: none;
   font-size: 14px;
   font-weight: 500;
   line-height: 1;
-  color: #ffffff;
+  color: #fff;
   float: right;
 
   @media screen and (max-width: ${breakpoints.md}px) {
@@ -184,6 +187,13 @@ export const FormNewCreateBtn = styled.button`
     height: 40px;
   }
 `;
-
-
-
+export const TextError = styled.div`
+  text-align: center;
+  color: #f84d4d;
+  font-family: Arial;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+  letter-spacing: -0.14px;
+`;
