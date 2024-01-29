@@ -14,6 +14,7 @@ import {
   PopNewCardTtl,
   PopNewCardWrap,
   StyledPopNewCard,
+  TextError,
 } from "./PopNewCard.styled";
 import {
   CategoriesP,
@@ -31,6 +32,7 @@ import useTasks from "../../hooks/useTasks";
 
 function PopNewCard() {
   const { updateTasks } = useTasks();
+  const [error, setError] = useState(false);
   const [selected, setSelected] = useState(null);
   const [newCard, setNewCard] = useState({
     title: "",
@@ -43,10 +45,24 @@ function PopNewCard() {
       ...newCard,
       date: selected,
     };
-
-    addTask({ cardData }).then((data) => {
-      updateTasks({ data });
-    });
+    if (
+      !cardData.title ||
+      !cardData.topic ||
+      !cardData.description ||
+      !cardData.date
+    ) {
+      setError(
+        "Недостаточно данных, проверьте все ли поля заполнены и повторите попытку."
+      );
+      return;
+    }
+    addTask({ cardData })
+      .then((data) => {
+        updateTasks({ data });
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
   }
 
   return (
@@ -72,6 +88,9 @@ function PopNewCard() {
                       onChange={(e) =>
                         setNewCard({ ...newCard, title: e.target.value })
                       }
+                      onClick={() => {
+                        setError(false);
+                      }}
                     />
                   </FormNewLabel>
                 </FormNewBlock>
@@ -85,72 +104,79 @@ function PopNewCard() {
                       onChange={(e) =>
                         setNewCard({ ...newCard, description: e.target.value })
                       }
+                      onClick={() => {
+                        setError(false);
+                      }}
                     />
                   </FormNewLabel>
                 </FormNewBlock>
               </PopNewCardForm>
-              <Calendar selected={selected} setSelected={setSelected}>
-                <p className="calendar__p date-end">
-                  Выберите срок исполнения{" "}
-                  <span className="date-control"></span>.
-                </p>
-              </Calendar>
+              <Calendar
+                selected={selected}
+                setSelected={setSelected}
+                onClick={() => {
+                  setError(false);
+                }}
+              />
             </PopNewCardWrap>
-            {/* <div className="pop-new-card__categories categories">
-              <p className="categories__p subttl">Категория</p>
-              <div className="categories__themes">
-                <div className="categories__theme _orange _active-category">
-                  <p className="_orange">Web Design</p>
-                </div>
-                <div className="categories__theme _green">
-                  <p className="_green">Research</p>
-                </div>
-                <div className="categories__theme _purple">
-                  <p className="_purple">Copywriting</p>
-                </div>
-              </div>
-            </div> */}
-
             <Checkbox>
               <CategoriesP>Категория</CategoriesP>
               <RadioToolbar>
                 <RadioToolbarInput
                   type="radio"
-                  id="radio1"
+                  id="web-design"
                   name="radios"
                   value="Web Design"
                   onChange={(e) =>
                     setNewCard({ ...newCard, topic: e.target.value })
                   }
+                  onClick={() => {
+                    setError(false);
+                  }}
                 />
-                <OrangeLabel htmlFor="radio1">Web Design</OrangeLabel>
+                <OrangeLabel htmlFor="web-design">Web Design</OrangeLabel>
 
                 <RadioToolbarInput
                   type="radio"
-                  id="radio2"
+                  id="research"
                   name="radios"
                   value="Research"
                   onChange={(e) =>
                     setNewCard({ ...newCard, topic: e.target.value })
                   }
+                  onClick={() => {
+                    setError(false);
+                  }}
                 />
-                <GreenLabel htmlFor="radio2">Research</GreenLabel>
+                <GreenLabel htmlFor="research">Research</GreenLabel>
 
                 <RadioToolbarInput
                   type="radio"
-                  id="radio3"
+                  id="copywriting"
                   name="radios"
                   value="Copywriting"
                   onChange={(e) =>
                     setNewCard({ ...newCard, topic: e.target.value })
                   }
+                  onClick={() => {
+                    setError(false);
+                  }}
                 />
-                <PurpleLabel htmlFor="radio3">Copywriting</PurpleLabel>
+                <PurpleLabel htmlFor="copywriting">Copywriting</PurpleLabel>
               </RadioToolbar>
             </Checkbox>
-            <FormNewCreateBtn onClick={onBtnSubmit}>
-              Создать задачу
-            </FormNewCreateBtn>
+            {error ? (
+              <>
+                <TextError>{error}</TextError>
+                <FormNewCreateBtn disabled $err={true}>
+                  Создать задачу
+                </FormNewCreateBtn>
+              </>
+            ) : (
+              <FormNewCreateBtn onClick={onBtnSubmit}>
+                Создать задачу
+              </FormNewCreateBtn>
+            )}
           </PopNewCardContent>
         </PopNewCardBlock>
       </PopNewCardContainer>

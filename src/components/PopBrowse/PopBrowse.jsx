@@ -17,14 +17,24 @@ import {
   FormBrowseAreaLabel,
   CategoriesTheme,
   ThemeP,
+  PopBrowseBtnEdit,
+  BtnGroup,
+  BtnBG,
+  BtnBOR,
+  PopBrowseStatus,
+  StatusP,
+  StatusThemes,
+  CategoriesP,
 } from "./PopBrowse.styled";
 import useTasks from "../../hooks/useTasks";
 import { delTask } from "../../API";
+import { useParams } from "react-router-dom";
 
-
-function PopBrowse({ category, id }) {
+function PopBrowse() {
+  const { category, id } = useParams();
 
   const { tasks, updateTasks } = useTasks();
+
   const taskData = tasks.find((task) => task._id === id);
   const taskId = taskData._id;
   let color;
@@ -43,9 +53,13 @@ function PopBrowse({ category, id }) {
   }
 
   async function handleDel() {
-    await delTask(taskId).then((data) => {
-      updateTasks({ data });
-    });
+    await delTask(taskId)
+      .then((data) => {
+        updateTasks({ data });
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
   }
 
   return (
@@ -55,59 +69,50 @@ function PopBrowse({ category, id }) {
           <PopBrowseContent>
             <PopBrowseTopBlock>
               <PopBrowseTtl>{taskData.title}</PopBrowseTtl>
-              <CategoriesTheme $themeColor={color}>
+              <CategoriesTheme $themeColor={color} $top={true}>
                 <ThemeP>{taskData.topic}</ThemeP>
-                </CategoriesTheme>
-              {/* <div className="categories__theme theme-top _orange _active-category">
-                <p className="_orange">{taskData.topic}</p>
-              </div> */}
+              </CategoriesTheme>
             </PopBrowseTopBlock>
-            <div className="pop-browse__status status">
-              <p className="status__p subttl">Статус</p>
-                <div className="status__themes">
-                  <StatusThemeGray>
-                    <GrayP>{taskData.status}</GrayP>
-                  </StatusThemeGray>
-                </div>
-            </div>
+            <PopBrowseStatus>
+              <StatusP>Статус</StatusP>
+              <StatusThemes>
+                <StatusThemeGray>
+                  <GrayP>{taskData.status}</GrayP>
+                </StatusThemeGray>
+              </StatusThemes>
+            </PopBrowseStatus>
             <PopBrowseTopWrap>
               <PopBrowseTopForm>
                 <FormBrowseBlock>
                   <FormBrowseAreaLabel>
                     Описание задачи
-                      <FormBrowseArea
-                        value={taskData.description}
-                        placeholder="Описание задачи..."
-                        readOnly
-                      />
-                 </FormBrowseAreaLabel>
+                    <FormBrowseArea
+                      value={taskData.description}
+                      placeholder="Описание задачи..."
+                      readOnly
+                    />
+                  </FormBrowseAreaLabel>
                 </FormBrowseBlock>
               </PopBrowseTopForm>
-                <Calendar readOnly>
-                  <p className="calendar__p date-end">
-                    Срок исполнения:
-                    <span className="date-control">{taskData.date}</span>
-                  </p>
-                </Calendar>
+              <Calendar selected={taskData.date} />
             </PopBrowseTopWrap>
-            <div className="pop-browse__btn-browse ">
-              <div className="btn-group">
-                <button
-                  className="btn-browse__edit _btn-bor _hover03"
-                >
-                  <Link to={`/edit-card/${category}/${id}`}>Редактировать задачу</Link>
-                </button>
-                <button
-                  className="btn-browse__delete _btn-bor _hover03"
-                  onClick={handleDel}
-                >
-                  Удалить задачу
-                </button>
-              </div>
-              <button className="btn-browse__close _btn-bg _hover01">
+            <CategoriesP>Категория</CategoriesP>
+            <CategoriesTheme $themeColor={color} $top={false}>
+              <ThemeP>{taskData.topic}</ThemeP>
+            </CategoriesTheme>
+            <PopBrowseBtnEdit>
+              <BtnGroup>
+                <BtnBOR>
+                  <Link to={`/edit-card/${category}/${id}`}>
+                    Редактировать задачу
+                  </Link>
+                </BtnBOR>
+                <BtnBOR onClick={handleDel}>Удалить задачу</BtnBOR>
+              </BtnGroup>
+              <BtnBG>
                 <Link to={AppRoutes.HOME}>Закрыть</Link>
-              </button>
-            </div>
+              </BtnBG>
+            </PopBrowseBtnEdit>
           </PopBrowseContent>
         </PopBrowseBlock>
       </PopBrowseContainer>

@@ -18,20 +18,16 @@ import {
   StatusThemes,
   CategoriesTheme,
   ThemeP,
+  PopBrowseBtnEdit,
+  BtnGroup,
+  BtnBG,
+  BtnBOR,
+  CategoriesP,
 } from "./PopEditCard.styled";
 
 import useTasks from "../../hooks/useTasks";
 import { changeTask, delTask } from "../../API";
-import { useState } from "react";
-import {
-  CategoriesP,
-  Checkbox,
-  GreenLabel,
-  OrangeLabel,
-  PurpleLabel,
-  RadioToolbar,
-  RadioToolbarInput,
-} from "../Common/CategoriesToolbar.styled";
+import { useEffect, useState } from "react";
 import { statusList } from "../../lib/statusList";
 import StatusToolbar from "../StatusToolbar/StatusToolbar";
 
@@ -41,7 +37,7 @@ function PopEditCard() {
   const taskData = tasks.find((task) => {
     return task._id == id;
   });
-  const taskId = taskData._id;
+
   const [selected, setSelected] = useState(taskData.date);
   const [cardData, setCardData] = useState({
     id: taskData._id,
@@ -68,21 +64,31 @@ function PopEditCard() {
   }
 
   async function handleDel() {
-    await delTask(taskId).then((data) => {
-      updateTasks({ data });
-    });
+    await delTask(id)
+      .then((data) => {
+        updateTasks({ data });
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
   }
 
-  async function handleChange() {
+  useEffect(() => {
     setCardData({
       ...cardData,
       date: selected,
     });
+  }, [selected]);
 
-    await changeTask({ taskId, cardData }).then((data) => {
-      updateTasks({ data });
-      console.log(tasks);
-    });
+  async function handleChange() {
+    console.log(cardData);
+    await changeTask({ id, cardData })
+      .then((data) => {
+        updateTasks({ data });
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
   }
 
   return (
@@ -92,7 +98,7 @@ function PopEditCard() {
           <PopBrowseContent>
             <PopBrowseTopBlock>
               <PopBrowseTtl>{taskData.title}</PopBrowseTtl>
-              <CategoriesTheme $themeColor={color}>
+              <CategoriesTheme $themeColor={color} $top={true}>
                 <ThemeP>{taskData.topic}</ThemeP>
               </CategoriesTheme>
             </PopBrowseTopBlock>
@@ -133,75 +139,24 @@ function PopEditCard() {
                   />
                 </FormBrowseBlock>
               </PopBrowseTopForm>
-              <Calendar  selected={selected} setSelected={setSelected}>
-                <p className="calendar__p date-end">
-                  Срок исполнения:
-                  <span className="date-control">{taskData.date}</span>
-                </p>
-              </Calendar>
+              <Calendar selected={selected} setSelected={setSelected} />
             </PopBrowseTopWrap>
-            <Checkbox>
-              <CategoriesP>Категория</CategoriesP>
-              <RadioToolbar>
-                <RadioToolbarInput
-                  type="radio"
-                  id="radio1"
-                  name="radios"
-                  value="Web Design"
-                  onChange={(e) =>
-                    setCardData({ ...cardData, topic: e.target.value })
-                  }
-                />
-                <OrangeLabel htmlFor="radio1">Web Design</OrangeLabel>
-
-                <RadioToolbarInput
-                  type="radio"
-                  id="radio2"
-                  name="radios"
-                  value="Research"
-                  onChange={(e) =>
-                    setCardData({ ...cardData, topic: e.target.value })
-                  }
-                />
-                <GreenLabel htmlFor="radio2">Research</GreenLabel>
-
-                <RadioToolbarInput
-                  type="radio"
-                  id="radio3"
-                  name="radios"
-                  value="Copywriting"
-                  onChange={(e) => {
-                    setCardData({ ...cardData, topic: e.target.value });
-                  }}
-                />
-                <PurpleLabel htmlFor="radio3">Copywriting</PurpleLabel>
-              </RadioToolbar>
-            </Checkbox>
-            <div className="pop-browse__btn-edit ">
-              <div className="btn-group">
-                <button
-                  className="btn-edit__edit _btn-bg _hover01"
-                  onClick={handleChange}
-                >
-                  Сохранить
-                </button>
-                <Link to={AppRoutes.HOME}>
-                  <button className="btn-edit__edit _btn-bor _hover03">
-                    Отменить
-                  </button>
-                </Link>
-                <button
-                  className="btn-edit__delete _btn-bor _hover03"
-                  id="btnDelete"
-                  onClick={handleDel}
-                >
-                  Удалить задачу
-                </button>
-              </div>
-              <button className="btn-edit__close _btn-bg _hover01">
+            <CategoriesP>Категория</CategoriesP>
+            <CategoriesTheme $themeColor={color} $top={false}>
+              <ThemeP>{taskData.topic}</ThemeP>
+            </CategoriesTheme>
+            <PopBrowseBtnEdit>
+              <BtnGroup>
+                <BtnBG onClick={handleChange}>Сохранить</BtnBG>
+                <BtnBOR>
+                  <Link to={AppRoutes.HOME}>Отменить</Link>
+                </BtnBOR>
+                <BtnBOR onClick={handleDel}>Удалить задачу</BtnBOR>
+              </BtnGroup>
+              <BtnBG>
                 <Link to={AppRoutes.HOME}>Закрыть</Link>
-              </button>
-            </div>
+              </BtnBG>
+            </PopBrowseBtnEdit>
           </PopBrowseContent>
         </PopBrowseBlock>
       </PopBrowseContainer>
