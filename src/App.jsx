@@ -1,4 +1,3 @@
-import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import { AppRoutes } from "./lib/appRoutes";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
