@@ -1,57 +1,55 @@
 import { useEffect, useState } from "react";
-import { cardList } from "../../data";
 import { GlobalStyle, Loading } from "../../Global.styled";
 import Wrapper from "../../components/Wrapper/Wrapper.styled";
 import Header from "../../components/Header/Header";
 import Main from "../../components/Main/Main";
-import PopNewCard from "../../components/PopNewCard/PopNewCard";
-import "../../App.css";
 import { Outlet } from "react-router-dom";
-import { getTasks }from "../../API";
+import useUser from "../../hooks/useUser";
+import useTasks from "../../hooks/useTasks";
+import { getTasks } from "../../API";
 
 export default function MainPage() {
-  const [cards, setCards] = useState(cardList);
-  const [isLoading, setIsLoading] = useState(true);
-  // const [loadingTasksError, setLoadingTasksError] = useState(null);
-
-  function addCard() {
-    const newCard = {
-      _id: cards.length + 1,
-      topic: "Research",
-      title: "Название задачи",
-      date: "30.10.23",
-      status: "Без статуса",
-    };
-    setCards([...cards, newCard]);
-  }
+  const { user } = useUser();
+  const { setIsLoading, updateTasks } = useTasks();
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    try {
-      getTasks().then((data) => {
-        setCards(data.tasks);
+    setIsLoading(true);
+    getTasks({ user })
+      .then((data) => {
+        updateTasks({ data });
+      })
+      .catch((error) => {
+        setError(error.message);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
-    } catch (error) {
-      alert(error.message)
-      // setLoadingTasksError(error.message);
-    } finally {
-      setIsLoading(false);
-    }
-  }, []);
+  }, [user]);
 
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setIsOpen((prevState) => !prevState);
+  };
   return (
     <>
       <GlobalStyle />
       <Wrapper>
-        <Outlet />
-        <PopNewCard />
-
-        <Header addCard={addCard} />
-        {isLoading ? (
+        <Outlet toggleDropdown={toggleDropdown} />
+        <Header isOpen={isOpen} toggleDropdown={toggleDropdown} />
+        {error ? (
+          <Loading>{error}</Loading>
+        ) : (
+          <Main />
+        )}
+          {/* {error ? (
+          <Loading>{error}</Loading>
+        ) : !tasks ? (
           <Loading>Данные загружаются...</Loading>
         ) : (
-          <Main cards={cards} /> 
-        )}
- 
+          <Main />
+        )} */}
       </Wrapper>
     </>
   );

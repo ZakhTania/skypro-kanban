@@ -10,7 +10,7 @@ export const HeaderPopUserSet = styled.div`
   height: 205px;
   border-radius: 10px;
   border: 0.7px solid rgba(148, 166, 190, 0.4);
-  background: #fff;
+  background: ${(props) => props.theme.head};
   box-shadow: 0px 10px 39px 0px rgba(26, 56, 101, 0.21);
   padding: 34px;
   text-align: center;
@@ -18,7 +18,7 @@ export const HeaderPopUserSet = styled.div`
 `;
 
 export const PopUserSetName = styled.p`
-  color: #000;
+  color: ${(props) => props.theme.text};
   font-size: 14px;
   font-weight: 500;
   line-height: 21px;
@@ -42,7 +42,7 @@ export const PopUserSetTheme = styled.div`
 `;
 
 export const PopUserSetThemeP = styled.p`
-  color: #000;
+  color: ${(props) => props.theme.text};
   font-size: 14px;
   line-height: 21px;
   letter-spacing: -0.14px;
@@ -52,7 +52,7 @@ export const PopUserSetThemeInput = styled.input`
   width: 24px;
   height: 13px;
   border-radius: 100px;
-  background: #eaeef6;
+  background: ${(props) => props.theme.body};
   outline: none;
   -webkit-appearance: none;
   -moz-appearance: none;

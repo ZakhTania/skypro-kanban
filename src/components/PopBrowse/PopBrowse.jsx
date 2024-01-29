@@ -12,95 +12,107 @@ import {
   FormBrowseBlock,
   StyledPopBrowse,
   FormBrowseArea,
+  GrayP,
+  StatusThemeGray,
+  FormBrowseAreaLabel,
+  CategoriesTheme,
+  ThemeP,
+  PopBrowseBtnEdit,
+  BtnGroup,
+  BtnBG,
+  BtnBOR,
+  PopBrowseStatus,
+  StatusP,
+  StatusThemes,
+  CategoriesP,
 } from "./PopBrowse.styled";
-import { Subttl } from "../Common/Common.styled";
+import useTasks from "../../hooks/useTasks";
+import { delTask } from "../../API";
+import { useParams } from "react-router-dom";
 
 function PopBrowse() {
+  const { category, id } = useParams();
+
+  const { tasks, updateTasks } = useTasks();
+
+  const taskData = tasks.find((task) => task._id === id);
+  const taskId = taskData._id;
+  let color;
+  switch (taskData.topic) {
+    case "Web Design":
+      color = "_orange";
+      break;
+    case "Copywriting":
+      color = "_purple";
+      break;
+    case "Research":
+      color = "_green";
+      break;
+    default:
+      color = "_gray";
+  }
+
+  async function handleDel() {
+    await delTask(taskId)
+      .then((data) => {
+        updateTasks({ data });
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  }
+
   return (
     <StyledPopBrowse>
       <PopBrowseContainer>
         <PopBrowseBlock>
           <PopBrowseContent>
             <PopBrowseTopBlock>
-              <PopBrowseTtl>Название задачи</PopBrowseTtl>
-              <div className="categories__theme theme-top _orange _active-category">
-                <p className="_orange">Web Design</p>
-              </div>
+              <PopBrowseTtl>{taskData.title}</PopBrowseTtl>
+              <CategoriesTheme $themeColor={color} $top={true}>
+                <ThemeP>{taskData.topic}</ThemeP>
+              </CategoriesTheme>
             </PopBrowseTopBlock>
-            <div className="pop-browse__status status">
-              <p className="status__p subttl">Статус</p>
-              <div className="status__themes">
-                <div className="status__theme _hide">
-                  <p>Без статуса</p>
-                </div>
-                <div className="status__theme _gray">
-                  <p className="_gray">Нужно сделать</p>
-                </div>
-                <div className="status__theme _hide">
-                  <p>В работе</p>
-                </div>
-                <div className="status__theme _hide">
-                  <p>Тестирование</p>
-                </div>
-                <div className="status__theme _hide">
-                  <p>Готово</p>
-                </div>
-              </div>
-            </div>
+            <PopBrowseStatus>
+              <StatusP>Статус</StatusP>
+              <StatusThemes>
+                <StatusThemeGray>
+                  <GrayP>{taskData.status}</GrayP>
+                </StatusThemeGray>
+              </StatusThemes>
+            </PopBrowseStatus>
             <PopBrowseTopWrap>
               <PopBrowseTopForm>
                 <FormBrowseBlock>
-                  <Subttl>
+                  <FormBrowseAreaLabel>
                     Описание задачи
-                  <FormBrowseArea placeholder="Введите описание задачи..." />
-                  </Subttl>
+                    <FormBrowseArea
+                      value={taskData.description}
+                      placeholder="Описание задачи..."
+                      readOnly
+                    />
+                  </FormBrowseAreaLabel>
                 </FormBrowseBlock>
               </PopBrowseTopForm>
-              <Calendar>
-                <p className="calendar__p date-end">
-                  Срок исполнения:{" "}
-                  <span className="date-control">09.09.23</span>
-                </p>
-              </Calendar>
+              <Calendar selected={taskData.date} />
             </PopBrowseTopWrap>
-            <div className="theme-down__categories theme-down">
-              <p className="categories__p subttl">Категория</p>
-              <div className="categories__theme _orange _active-category">
-                <p className="_orange">Web Design</p>
-              </div>
-            </div>
-            <div className="pop-browse__btn-browse ">
-              <div className="btn-group">
-                <button className="btn-browse__edit _btn-bor _hover03">
-                  <a href="#">Редактировать задачу</a>
-                </button>
-                <button className="btn-browse__delete _btn-bor _hover03">
-                  <a href="#">Удалить задачу</a>
-                </button>
-              </div>
-              <button className="btn-browse__close _btn-bg _hover01">
+            <CategoriesP>Категория</CategoriesP>
+            <CategoriesTheme $themeColor={color} $top={false}>
+              <ThemeP>{taskData.topic}</ThemeP>
+            </CategoriesTheme>
+            <PopBrowseBtnEdit>
+              <BtnGroup>
+                <BtnBOR>
+                  <Link to={`/edit-card/${category}/${id}`}>
+                    Редактировать задачу
+                  </Link>
+                </BtnBOR>
+                <BtnBOR onClick={handleDel}>Удалить задачу</BtnBOR>
+              </BtnGroup>
+              <BtnBG>
                 <Link to={AppRoutes.HOME}>Закрыть</Link>
-              </button>
-            </div>
-            <div className="pop-browse__btn-edit _hide">
-              <div className="btn-group">
-                <button className="btn-edit__edit _btn-bg _hover01">
-                  <a href="#">Сохранить</a>
-                </button>
-                <button className="btn-edit__edit _btn-bor _hover03">
-                  <a href="#">Отменить</a>
-                </button>
-                <button
-                  className="btn-edit__delete _btn-bor _hover03"
-                  id="btnDelete"
-                >
-                  <a href="#">Удалить задачу</a>
-                </button>
-              </div>
-              <button className="btn-edit__close _btn-bg _hover01">
-                <a href="#">Закрыть</a>
-              </button>
-            </div>
+              </BtnBG>
+            </PopBrowseBtnEdit>
           </PopBrowseContent>
         </PopBrowseBlock>
       </PopBrowseContainer>

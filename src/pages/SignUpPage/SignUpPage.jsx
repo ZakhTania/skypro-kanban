@@ -5,23 +5,38 @@ import {
   Modal,
   ModalBlock,
   ModalBtn,
+  ModalBtnErr,
   ModalFormGroup,
   ModalFormLogin,
   ModalTtl,
+  TextError,
   Wrapper,
 } from "./SignUpPage.styled";
 import Input from "../../components/Common/Input/Input";
 import { GlobalStyle } from "../../Global.styled";
 import { getSignUp } from "../../API";
 import { useState } from "react";
+import useUser from "../../hooks/useUser";
 
-export default function SignUp({ setAuth }) {
+export default function SignUp() {
+  const [error, setError] = useState(false);
+  const { login } = useUser();
   const [loginData, setLoginData] = useState({
     login: "",
     name: "",
     password: "",
   });
 
+  function setReg(loginData) {
+    getSignUp(loginData)
+      .then((data) => {
+        login(data.user);
+      })
+      .catch((error) => {
+        setError(error.message);
+        console.log(error);
+      });
+  }
   const onLoginChange = (e) => {
     setLoginData({
       ...loginData,
@@ -60,13 +75,21 @@ export default function SignUp({ setAuth }) {
                   placeholder="Имя"
                   value={loginData.name}
                   onChange={onNameChange}
+                  err={error ? "error" : null}
+                  onClick={() => {
+                    setError(false);
+                  }}
                 />
                 <Input
                   type="text"
                   name="login"
-                  placeholder="Логин"
+                  placeholder="Эл. почта"
                   value={loginData.login}
                   onChange={onLoginChange}
+                  err={error ? "error" : null}
+                  onClick={() => {
+                    setError(false);
+                  }}
                 />
                 <Input
                   type="password"
@@ -74,18 +97,30 @@ export default function SignUp({ setAuth }) {
                   placeholder="Пароль"
                   value={loginData.password}
                   onChange={onPasswordChange}
-                />
-                <ModalBtn
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setAuth(loginData, getSignUp);
+                  err={error ? "error" : null}
+                  onClick={() => {
+                    setError(false);
                   }}
-                >
-                  Зарегистрироваться
-                </ModalBtn>
+                />
+                {error ? (
+                  <>
+                    <TextError>{error}</TextError>
+                    <ModalBtnErr disabled>Зарегистрироваться</ModalBtnErr>
+                  </>
+                ) : (
+                  <ModalBtn
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setReg(loginData);
+                    }}
+                  >
+                    Зарегистрироваться
+                  </ModalBtn>
+                )}
+
                 <ModalFormGroup>
                   <p>
-                    Уже есть аккаунт?{" "}
+                    Уже есть аккаунт?
                     <Link to={AppRoutes.SIGNIN}>Войдите здесь</Link>
                   </p>
                 </ModalFormGroup>

@@ -7,6 +7,24 @@ import {
 } from "./Column.styled";
 
 function Column({ title, cardList }) {
+  let category;
+  switch (title) {
+    case "Без статуса":
+      category = "no_status";
+      break;
+    case "Нужно сделать":
+      category = "todo";
+      break;
+    case "Тестирование":
+      category = "test";
+      break;
+    case "Готово":
+      category = "done";
+      break;
+    default:
+      category = "no_status";
+  }
+
   return (
     <StyledColumn>
       <ColumnTitle>
@@ -19,6 +37,8 @@ function Column({ title, cardList }) {
             theme={card.topic}
             title={card.title}
             date={card.date}
+            category={category}
+            id={card._id}
           />
         ))}
       </StyledCards>

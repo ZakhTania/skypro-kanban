@@ -1,0 +1,68 @@
+  .rdp-caption, .rdp-head_cell, .rdp-day {
+    color: #94A6BE;
+  }
+
+  .rdp {
+    --rdp-cell-size: 22px;
+    /* Size of the day cells. */
+    --rdp-caption-font-size: 14px;
+    /* Font size for the caption labels. */
+    --rdp-accent-color: #94A6BE;
+    /* Accent color for the background of selected days. */
+    --rdp-background-color: #e7edff;
+    /* Background color for the hovered/focused elements. */
+    --rdp-accent-color-dark: #94A6BE;
+    /* Accent color for the background of selected days (to use in dark-mode). */
+    --rdp-background-color-dark: #20202C;
+    /* Background color for the hovered/focused elements (to use in dark-mode). */
+    --rdp-outline: 2px solid var(--rdp-accent-color);
+    /* Outline border for focused elements */
+    --rdp-outline-selected: 3px solid var(--rdp-accent-color);
+    /* Outline border for focused _and_ selected elements */
+    --rdp-selected-color: #ffffff;
+    /* Color of selected day text */
+
+    margin: 1em;
+  }
+
+  .rdp-caption {
+    font-size: 14px;
+    font-family: Roboto;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+
+  .rdp-head_cell {
+    font-size: 10px;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.2px;
+    text-transform: lowercase;
+  }
+
+  .rdp-cell {
+    font-size: 10px;
+  }
+
+  .rdp-day {
+    font-size: 10px;
+  }
+
+  .rdp-day_selected {
+    color: #ffffff;
+  }
+
+  @media screen and (max-width: 600px) {
+
+
+    .rdp-day, .rdp-head_cell, .rdp-cell {
+      font-size: 14px;
+    }
+
+    .rdp {
+      --rdp-cell-size: 42px;
+      /* Size of the day cells. */
+    }
+  }

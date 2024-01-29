@@ -19,7 +19,7 @@ export default function NotFound() {
           <Modal>
             <ModalBlock>
               <ModalTtl>
-                <img src="images/404.png" alt="error" />
+                <img src="../../../public/images/404.png" alt="error" />
                 <h2>Страница не найдена</h2>
               </ModalTtl>
               <Link to={AppRoutes.HOME}>

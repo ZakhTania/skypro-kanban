@@ -28,12 +28,12 @@ export const PopExitContainer = styled.div`
 export const PopExitBlock = styled.div`
   display: block;
   margin: 0 auto;
-  background-color: #ffffff;
+  background-color: ${(props) => props.theme.head};
   max-width: 370px;
   width: 100%;
   padding: 50px 60px;
   border-radius: 10px;
-  border: 0.7px solid #d4dbe5;
+  border: 0.7px solid ${(props) => props.theme.border};
   box-shadow: 0px 4px 67px -12px rgba(0, 0, 0, 0.13);
 
   @media screen and (max-width: ${breakpoints.sm}px) {
@@ -66,7 +66,7 @@ export const PopExitGroup = styled.form`
 export const PopExitBtnYes = styled.button`
   width: 153px;
   height: 30px;
-  background-color: #565EEF;
+  background-color: #565eef;
   border-radius: 4px;
   border: none;
   outline: none;
@@ -77,7 +77,7 @@ export const PopExitBtnYes = styled.button`
   line-height: 21px;
   font-weight: 500;
   letter-spacing: -0.14px;
-  color: #FFFFFF;
+  color: #fff;
   margin-right: 10px;
 
   ${hover01}
@@ -88,14 +88,13 @@ export const PopExitBtnYes = styled.button`
     margin-right: 0;
     margin-bottom: 10px;
   }
-`
+`;
 export const PopExitBtnNo = styled.button`
-
-   width: 153px;
+  width: 153px;
   height: 30px;
   background-color: transparent;
   border-radius: 4px;
-  border: 0.7px solid var(--palette-navy-60, #565EEF);
+  border: 0.7px solid var(--palette-navy-60, #565eef);
   outline: none;
   display: flex;
   align-items: center;
@@ -104,35 +103,12 @@ export const PopExitBtnNo = styled.button`
   line-height: 21px;
   font-weight: 500;
   letter-spacing: -0.14px;
-  color: #565EEF;;
-  
+  color: #565eef;
+
   ${hover03}
 
   @media screen and (max-width: ${breakpoints.sm}px) {
     width: 100%;
     height: 40px;
   }
-`
-
-// .pop-exit__exit-yes a {
-//   width: 100%;
-//   height: 100%;
-//   color: #FFFFFF;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-// }
-
-
-// .pop-exit__exit-no a {
-//   width: 100%;
-//   height: 100%;
-//   color: #565EEF;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-// }
-
-
-
-
+`;

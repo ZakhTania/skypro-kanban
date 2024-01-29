@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
   height: 100%;
   overflow-x: hidden;
   overflow-y: scroll;
-  background-color: #eaeef6;
+  background-color: ${(props) => props.theme.body};
 `;
 
 export const Container = styled.div`
@@ -28,19 +28,19 @@ export const Modal = styled.div`
   justify-content: center;
 
   @media screen and (max-width: ${breakpoints.sm}px) {
-    background-color: #ffffff;
+    background-color: ${(props) => props.theme.head};
   }
 `;
 
 export const ModalBlock = styled.div`
   display: block;
   margin: 0 auto;
-  background-color: #ffffff;
+  background-color: ${(props) => props.theme.head};
   max-width: 368px;
   width: 100%;
   padding: 50px 60px;
   border-radius: 10px;
-  border: 0.7px solid #d4dbe5;
+  border: 0.7px solid ${(props) => props.theme.border};
   box-shadow: 0px 4px 67px -12px rgba(0, 0, 0, 0.13);
 
   @media screen and (max-width: ${breakpoints.sm}px) {
@@ -83,7 +83,7 @@ export const ModalBtn = styled.button`
   line-height: 21px;
   font-weight: 500;
   letter-spacing: -0.14px;
-  color: #ffffff;
+  color: #fff;
 
   ${hover01}
 

@@ -55,7 +55,6 @@ export const PopBrowseBlock = styled.div`
     padding: 20px 16px 32px;
   }
 `;
-
 export const PopBrowseContent = styled.div`
   display: block;
   text-align: left;
@@ -66,23 +65,6 @@ export const PopBrowseTopBlock = styled.div`
   align-items: center;
   justify-content: space-between;
   margin-bottom: 18px;
-`;
-
-export const PopBrowseStatus = styled.div`
-  margin-bottom: 11px;
-`;
-
-export const StatusP = styled.p`
-  margin-bottom: 14px;
-
-  ${Subttl}
-`;
-
-export const StatusThemes = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  justify-content: flex-start;
 `;
 
 export const PopBrowseTtl = styled.h3`
@@ -133,7 +115,7 @@ export const FormBrowseArea = styled.textarea`
   letter-spacing: -0.14px;
   margin-top: 14px;
   height: 200px;
-  color: #94a6be;
+  color: ${(props) => props.theme.text};
 
   &::placeholder {
     font-weight: 400;
@@ -160,7 +142,6 @@ export const FormBrowseArea = styled.textarea`
 export const StatusThemeGray = styled.div`
   border-radius: 24px;
   border: 0.7px solid rgba(148, 166, 190, 0.4);
-  /* color: #94A6BE; */
   padding: 11px 14px 10px;
   margin-right: 7px;
   margin-bottom: 7px;
@@ -174,6 +155,20 @@ export const GrayP = styled.p`
   letter-spacing: -0.14px;
   background: #94a6be;
   color: ${(props) => props.theme.head};
+`;
+export const PopBrowseStatus = styled.div`
+  margin-bottom: 11px;
+`;
+export const PopBrowseStatusP = styled.p`
+  margin-bottom: 11px;
+
+  ${Subttl}
+`;
+export const StatusThemes = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
 `;
 
 export const ThemeP = styled.p`
@@ -196,9 +191,9 @@ export const CategoriesTheme = styled.div`
   ${ThemeP} {
     color: ${({ $themeColor }) => themeStyles[$themeColor]?.color || "#06b16e"};
   }
-
   @media screen and (max-width: ${breakpoints.md}px) {
     display: ${({ $top }) => ($top ? "none" : "inline-block")};
+    margin-bottom: 20px;
   }
 `;
 
@@ -212,9 +207,9 @@ export const CategoriesP = styled.p`
 
   @media screen and (max-width: ${breakpoints.md}px) {
     display: block;
-    margin-bottom: 20px;
   }
 `;
+
 export const PopBrowseBtnEdit = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -226,12 +221,8 @@ export const BtnGroup = styled.div`
   & button {
     margin-right: 8px;
   }
-
   @media screen and (max-width: ${breakpoints.md}px) {
     width: 100%;
-    & button {
-      margin-right: 0px;
-    }
   }
 `;
 
@@ -271,6 +262,7 @@ export const BtnBOR = styled.button`
   }
 
   ${hover03}
+
   @media screen and (max-width: ${breakpoints.md}px) {
     width: 100%;
     height: 40px;

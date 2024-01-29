@@ -5,7 +5,7 @@ import { breakpoints } from "../../lib/breakpoints";
 export const StyledHeader = styled.header`
   width: 100%;
   margin: 0 auto;
-  background-color: #ffffff;
+  background-color: ${(props) => props.theme.head};
 `;
 
 export const HeaderBlock = styled.div`
@@ -25,7 +25,7 @@ export const HeaderBtnNew = styled.button`
   height: 30px;
   border-radius: 4px;
   background-color: #565eef;
-  color: #ffffff;
+  color: #fff;
   border: none;
   font-size: 14px;
   line-height: 1;
