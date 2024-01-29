@@ -13,8 +13,12 @@ import {
   CardDate,
   CardDateP,
 } from "./Card.styled";
+import { format } from "date-fns";
+import useTasks from "../../hooks/useTasks";
+import MyLoader from "../Loader/Loader";
 
 export default function Card({ theme, title, date, category, id }) {
+  const {tasks} = useTasks();
   let color;
   switch (theme) {
     case "Web Design":
@@ -34,7 +38,11 @@ export default function Card({ theme, title, date, category, id }) {
     <AnimatedCard>
       <CardsItem>
         <CardsCard>
-          <CardGroup>
+          {!tasks ? (
+            <MyLoader />
+          ) : (
+            <>
+            <CardGroup>
             <CardTheme $themeColor={color}>
               <ThemeP>{theme}</ThemeP>
             </CardTheme>
@@ -79,9 +87,11 @@ export default function Card({ theme, title, date, category, id }) {
                   </clipPath>
                 </defs>
               </svg>
-              <CardDateP>{date}</CardDateP>
+              <CardDateP>{format(date, 'dd.MM.yy')}</CardDateP>
             </CardDate>
           </CardContent>
+          </>
+          )}
         </CardsCard>
       </CardsItem>
     </AnimatedCard>

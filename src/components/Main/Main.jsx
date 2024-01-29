@@ -3,11 +3,14 @@ import Column from "../Column/Column";
 import { MainBlock, MainContent, StyledMain } from "./Main.styled";
 import useTasks from "../../hooks/useTasks";
 import { statusList } from "../../lib/statusList";
+import { cardListLoading } from "../../data";
 
 function Main() {
-
-const {tasks} = useTasks();
-
+  const { tasks } = useTasks();
+  let cards = tasks;
+  if (!tasks) {
+    cards = cardListLoading;
+  }
   return (
     <StyledMain>
       <Container>
@@ -17,7 +20,7 @@ const {tasks} = useTasks();
               <Column
                 key={status}
                 title={status}
-                cardList={tasks.filter((card) => card.status === status)}
+                cardList={cards.filter((card) => card.status === status)}
               />
             ))}
           </MainContent>
