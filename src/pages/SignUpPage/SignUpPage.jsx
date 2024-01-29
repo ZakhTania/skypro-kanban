@@ -76,6 +76,9 @@ export default function SignUp() {
                   value={loginData.name}
                   onChange={onNameChange}
                   err={error ? "error" : null}
+                  onClick={() => {
+                    setError(false);
+                  }}
                 />
                 <Input
                   type="text"
@@ -84,6 +87,9 @@ export default function SignUp() {
                   value={loginData.login}
                   onChange={onLoginChange}
                   err={error ? "error" : null}
+                  onClick={() => {
+                    setError(false);
+                  }}
                 />
                 <Input
                   type="password"
@@ -92,11 +98,14 @@ export default function SignUp() {
                   value={loginData.password}
                   onChange={onPasswordChange}
                   err={error ? "error" : null}
+                  onClick={() => {
+                    setError(false);
+                  }}
                 />
                 {error ? (
                   <>
                     <TextError>{error}</TextError>
-                    <ModalBtnErr disabled> Войти</ModalBtnErr>
+                    <ModalBtnErr disabled>Зарегистрироваться</ModalBtnErr>
                   </>
                 ) : (
                   <ModalBtn
